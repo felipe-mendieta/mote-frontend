@@ -1,4 +1,4 @@
-let basedomain: string = 'mote.ucuenca.edu.ec';
+let basedomain: string = 'http://localhost:3000';
 export const environment = {
   production: true,
   mainUrl: `${basedomain}/#/auth/login`,
