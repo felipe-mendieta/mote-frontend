@@ -11,6 +11,8 @@ import { Question } from 'src/app/interfaces/poll.interface';
 import { PollService } from '../../../../services/poll.service';
 import { Jsonresponse } from 'src/app/interfaces/models/responsejson.model';
 import { PollResponse } from 'src/app/interfaces/models/pollResponse.interface';
+import { Subscription, tap } from 'rxjs';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
   selector: 'app-my-poll',
@@ -28,9 +30,12 @@ export class MyPollComponent implements OnInit, OnDestroy {
   pollID: string = '';
   surveyStatus: boolean = false;
   isAnswered: boolean = true;
+  private pollSubscription: Subscription = new Subscription();
+  numero: number = 0;
   constructor(
     private router: Router,
     private pollService: PollService,
+    private roomService: RoomService,
     private formBuilder: FormBuilder,
   ) // private socketService: SocketService,
   { }
@@ -40,18 +45,20 @@ export class MyPollComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // this.socketService.connect();
-    this.pollService.getPoll$().subscribe((poll) => {
-      if (poll) {
-        this.pollTitle = poll.pollTitle;
-        this.questions = poll.questions;
-        this.pollID = poll._id;
-        this.loadQuestion();
+    this.pollSubscription = this.pollService
+      .getPoll$()
+      .pipe(tap(console.log))
+      .subscribe((poll) => {
+        if (poll) {
+          this.pollTitle = poll.pollTitle;
+          this.questions = poll.questions;
+          this.pollID = poll._id;
 
-      }
-    });
+          this.loadQuestion();
+        }
+      });
   }
-  get currentQuestion() {
-    //this.isAnswered = this.isQuestionAnswered();
+  get currentPollQuestion() {
     return this.questions[this.questionIndex];
   }
   isQuestionAnswered() {
@@ -62,7 +69,7 @@ export class MyPollComponent implements OnInit, OnDestroy {
     return false;
   }
   loadQuestion() {
-    const question = this.currentQuestion;
+    //const question = this.currentQuestion;
     this.surveyForm.addControl('PollId', this.formBuilder.control(this.pollID));
   }
 
@@ -105,30 +112,31 @@ export class MyPollComponent implements OnInit, OnDestroy {
       const pollId = data.PollId;
 
       const responses = Object.keys(data)
-        .filter(key => key !== 'PollId')
-        .map(key => {
+        .filter((key) => key !== 'PollId')
+        .map((key) => {
           let option: number[];
           if (typeof data[key] === 'number') {
             option = [data[key]];
           } else if (typeof data[key] === 'object') {
             option = Object.keys(data[key])
-              .filter(subKey => data[key][subKey])
-              .map(subKey => Number(subKey));
+              .filter((subKey) => data[key][subKey])
+              .map((subKey) => Number(subKey));
           } else {
             option = [];
           }
           return {
             questionId: key,
-            option: option
+            option: option,
           };
         });
+      const roomId=this.roomService.getRoomId();
       const pollResponse: PollResponse = {
+        roomId:roomId,
         pollId: pollId,
         responses: responses,
       };
+      console.log(pollResponse);
       this.pollService.savePollResponses(pollResponse);
-
-
     }
     this.pollService.setPollSavedLocalStorage('true');
   }
