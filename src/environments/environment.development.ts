@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  mainUrl: 'http://localhost:3000/api/v1',
+  mainUrl: 'mote.ucuenca.edu.ec',
   baseUrl: 'http://localhost:3000/api/v1',
   socketUrl: 'http://localhost:3000',
   jsonURL: './../assets/jsons/poll.json',
