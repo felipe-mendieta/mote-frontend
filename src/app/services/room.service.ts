@@ -16,7 +16,7 @@ export class RoomService {
     private http: HttpClient,
     private tokenService: TokenService,
     private socketService: SocketService
-  ) {}
+  ) { }
 
   roomId: string = '';
   userId: string = '';
@@ -37,7 +37,28 @@ export class RoomService {
       token = this.tokenService.getToken();
     }
 
-    this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token });
+    //send userId to save into room table on database
+    const userId = this.getUserId();
+    this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token, userId });
+    this.socketService.on('timeOut').subscribe((data) => {
+      console.log(`tiempo inactivo: ${data}`);
+      // Verify if browser supports notifications
+      if ('Notification' in window) {
+        // Request notifications permission
+        Notification.requestPermission()
+          .then(function (permission) {
+            if (permission === 'granted') {
+              // Notification
+              var notification = new Notification('Llevas mucho tiempo inactivo', {
+                body: `${data} segundos`
+              });
+            }
+          });
+      } else {
+        console.log('Tu navegador no soporta notificaciones.');
+      }
+
+    })
   }
   //logout
   leaveRoom(roomCode: string, token?: string) {
@@ -46,8 +67,9 @@ export class RoomService {
     }
     //clean local storage
     localStorage.clear();
-
-    this.socketService.emit<JoinRoom>('leaveRoom', { roomCode, token });
+    //send userId to delete from room table on database
+    const userId = this.getUserId();
+    this.socketService.emit<JoinRoom>('leaveRoom', { roomCode, token, userId });
   }
 
   getRoomId(): string {

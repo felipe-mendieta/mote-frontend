@@ -11,6 +11,7 @@ export interface Room {
 export interface JoinRoom{
   roomCode: string | undefined;
   token: string | undefined;
+  userId: string | null;  //for save the userId into room table
 }
 //interface for exists room
 export interface RoomExists {
