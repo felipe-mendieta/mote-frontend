@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ResponseLoginDashboard } from '../interfaces/models/auth.model';
 import { environment } from 'src/environments/environment';
+import { RoomService } from './room.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,12 @@ export class AuthService {
     private valueManagerService: ValuemanagerService,
     private tokenService: TokenService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private roomService: RoomService
   ) {}
 
   login(rol = '', token = ''): Observable<ResponseLoginDashboard> {
-   // console.log('login service');
+    // console.log('login service');
     const info = {
       rol: rol,
     };
@@ -49,6 +51,8 @@ export class AuthService {
   }
 
   logout() {
+    const roomCode = this.roomService.getRoomCode() || '';
+    this.roomService.studentLeaveRoom(roomCode);
     this.tokenService.removeToken();
     localStorage.clear();
     this.router.navigate(['/auth']);

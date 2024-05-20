@@ -6,5 +6,6 @@ export enum ACTIVITY {
   comment ="comment",
   question= "question",
   emotion = "emotion",
+  joinRoom= "join room"
 }
 

@@ -6,6 +6,7 @@ import { JoinRoom, Room } from '../interfaces/room.interface';
 import { RoomExists } from '../interfaces/room.interface';
 import { TokenService } from './token.service';
 import { SocketService } from './socket.service';
+import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class RoomService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private notificationsService: NotificationsService
   ) { }
 
   roomId: string = '';
@@ -43,20 +45,8 @@ export class RoomService {
     this.socketService.on('timeOut').subscribe((data) => {
       console.log(`tiempo inactivo: ${data}`);
       // Verify if browser supports notifications
-      if ('Notification' in window) {
-        // Request notifications permission
-        Notification.requestPermission()
-          .then(function (permission) {
-            if (permission === 'granted') {
-              // Notification
-              var notification = new Notification('Llevas mucho tiempo inactivo', {
-                body: `${data} segundos`
-              });
-            }
-          });
-      } else {
-        console.log('Tu navegador no soporta notificaciones.');
-      }
+     this.notificationsService.reqNotificationPermission();
+     this.notificationsService.launchNotification('Llevas mucho tiempo inactivo','Tu participación en la clase es importante');
 
     })
   }
@@ -70,6 +60,16 @@ export class RoomService {
     //send userId to delete from room table on database
     const userId = this.getUserId();
     this.socketService.emit<JoinRoom>('leaveRoom', { roomCode, token, userId });
+  }
+  studentLeaveRoom(roomCode: string, token?: string) {
+    if (!token) {
+      token = this.tokenService.getToken();
+    }
+    //clean local storage
+    localStorage.clear();
+    //send userId to delete from room table on database
+    const userId = this.getUserId();
+    this.socketService.emit<JoinRoom>('studentLeaveRoom', { roomCode, token, userId });
   }
 
   getRoomId(): string {
