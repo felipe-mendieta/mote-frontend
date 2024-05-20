@@ -45,7 +45,7 @@ export class RoomService {
     this.socketService.on('timeOut').subscribe((data) => {
       console.log(`tiempo inactivo: ${data}`);
       // Verify if browser supports notifications
-     this.notificationsService.reqNotificationPermission();
+     //this.notificationsService.reqNotificationPermission();
      this.notificationsService.launchNotification('Llevas mucho tiempo inactivo','Tu participación en la clase es importante');
 
     })

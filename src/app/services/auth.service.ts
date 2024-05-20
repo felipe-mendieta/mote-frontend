@@ -56,6 +56,8 @@ export class AuthService {
     this.tokenService.removeToken();
     localStorage.clear();
     this.router.navigate(['/auth']);
+    //recharge page for generate new id token
+    location.reload();
     this.valueManagerService.resetValues();
   }
 }

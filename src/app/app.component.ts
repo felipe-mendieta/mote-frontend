@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { ScreenService } from './services/screen.service';
+import {NotificationsService} from "./services/notifications.service";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ import { ScreenService } from './services/screen.service';
 export class AppComponent implements OnInit {
   title = 'studentFront';
   constructor(private screenService: ScreenService) {}
+  notificationService = inject(NotificationsService);
   ngOnInit() {
     // Llama al servicio para mantener la pantalla activa
     this.keepScreenOn();
+    this.notificationService.reqNotificationPermission();
   }
   ngOnDestroy() {
     this.screenService.disableKeepAwake(); // Desactiva mantener la pantalla activa al salir del componente
