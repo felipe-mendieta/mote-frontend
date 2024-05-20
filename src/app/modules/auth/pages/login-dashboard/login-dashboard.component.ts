@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import {AfterViewInit, Component, NgZone, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
@@ -10,7 +10,7 @@ declare var google: any;
   templateUrl: './login-dashboard.component.html',
   styleUrls: ['./login-dashboard.component.css'],
 })
-export class LoginDashboardComponent implements OnInit {
+export class LoginDashboardComponent implements OnInit,AfterViewInit {
   constructor(
     private router: Router,
     private roomService: RoomService,
@@ -18,17 +18,34 @@ export class LoginDashboardComponent implements OnInit {
     private authService: AuthService
   ) {}
   ngOnInit(): void {
-    google.accounts.id.initialize({
-      client_id: environment.googleClientId,
-      callback: (resp: any) => this.handleLogin(resp),
-    });
+    window.onload = () => {
+      if (typeof google !== 'undefined') {
+        google.accounts.id.initialize({
+          client_id: environment.googleClientId,
+          callback: (resp: any) => this.handleLogin(resp),
+        });
 
-    google.accounts.id.renderButton(document.getElementById('google-btn'), {
-      theme: 'filled_blue',
-      size: 'large',
-      shape: 'rectangle',
-      width: 350,
-    });
+        google.accounts.id.renderButton(document.getElementById('google-btn'), {
+          theme: 'filled_blue',
+          size: 'large',
+          shape: 'rectangle',
+          width: 350,
+        });
+      }
+    };
+  }
+  ngAfterViewInit(): void {
+    // google.accounts.id.initialize({
+    //   client_id: environment.googleClientId,
+    //   callback: (resp: any) => this.handleLogin(resp),
+    // });
+    //
+    // google.accounts.id.renderButton(document.getElementById('google-btn'), {
+    //   theme: 'filled_blue',
+    //   size: 'large',
+    //   shape: 'rectangle',
+    //   width: 350,
+    // });
   }
 
   private decodeToken(token: string) {
