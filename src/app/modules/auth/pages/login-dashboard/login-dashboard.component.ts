@@ -18,17 +18,9 @@ export class LoginDashboardComponent implements OnInit {
     private authService: AuthService
   ) {}
   ngOnInit(): void {
-    google.accounts.id.initialize({
-      client_id: environment.googleClientId,
-      callback: (resp: any) => this.handleLogin(resp),
-    });
-
-    google.accounts.id.renderButton(document.getElementById('google-btn'), {
-      theme: 'filled_blue',
-      size: 'large',
-      shape: 'rectangle',
-      width: 350,
-    });
+    window.onload = () => {
+      this.initializeGoogle();
+    }
   }
 
   private decodeToken(token: string) {
@@ -66,5 +58,19 @@ export class LoginDashboardComponent implements OnInit {
         });
       });
     }
+  }
+
+  private initializeGoogle() {
+    google.accounts.id.initialize({
+      client_id: environment.googleClientId,
+      callback: (resp: any) => this.handleLogin(resp),
+    });
+
+    google.accounts.id.renderButton(document.getElementById('google-btn'), {
+      theme: 'filled_blue',
+      size: 'large',
+      shape: 'rectangle',
+      width: 350,
+    });
   }
 }
