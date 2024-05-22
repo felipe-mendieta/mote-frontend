@@ -1,7 +1,7 @@
-let basedomain: string = 'http://localhost:3000';
+let basedomain: string = 'http://localhost';
 export const environment = {
   production: true,
-  mainUrl: `${basedomain}/#/auth/login`,
+  mainUrl: `mote.ucuenca.edu.ec`,
   baseUrl: `${basedomain}/api/v1`,
   socketUrl: `${basedomain}`,
   jsonURL: './../assets/jsons/poll.json',
