@@ -1,4 +1,4 @@
-let backenddomain: string = 'http://10.16.0.127';
+let backenddomain: string = 'https://mote.ucuenca.edu.ec';
 export const environment = {
   production: true,
   mainUrl: `mote.ucuenca.edu.ec`,
