@@ -10,7 +10,7 @@ declare var google: any;
   templateUrl: './login-dashboard.component.html',
   styleUrls: ['./login-dashboard.component.css'],
 })
-export class LoginDashboardComponent implements OnInit,AfterViewInit {
+export class LoginDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private roomService: RoomService,
@@ -19,33 +19,8 @@ export class LoginDashboardComponent implements OnInit,AfterViewInit {
   ) {}
   ngOnInit(): void {
     window.onload = () => {
-      if (typeof google !== 'undefined') {
-        google.accounts.id.initialize({
-          client_id: environment.googleClientId,
-          callback: (resp: any) => this.handleLogin(resp),
-        });
-
-        google.accounts.id.renderButton(document.getElementById('google-btn'), {
-          theme: 'filled_blue',
-          size: 'large',
-          shape: 'rectangle',
-          width: 350,
-        });
-      }
-    };
-  }
-  ngAfterViewInit(): void {
-    // google.accounts.id.initialize({
-    //   client_id: environment.googleClientId,
-    //   callback: (resp: any) => this.handleLogin(resp),
-    // });
-    //
-    // google.accounts.id.renderButton(document.getElementById('google-btn'), {
-    //   theme: 'filled_blue',
-    //   size: 'large',
-    //   shape: 'rectangle',
-    //   width: 350,
-    // });
+      this.initializeGoogle();
+    }
   }
 
   private decodeToken(token: string) {
@@ -83,5 +58,19 @@ export class LoginDashboardComponent implements OnInit,AfterViewInit {
         });
       });
     }
+  }
+
+  private initializeGoogle() {
+    google.accounts.id.initialize({
+      client_id: environment.googleClientId,
+      callback: (resp: any) => this.handleLogin(resp),
+    });
+
+    google.accounts.id.renderButton(document.getElementById('google-btn'), {
+      theme: 'filled_blue',
+      size: 'large',
+      shape: 'rectangle',
+      width: 350,
+    });
   }
 }
