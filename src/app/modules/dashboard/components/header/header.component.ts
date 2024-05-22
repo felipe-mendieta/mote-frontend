@@ -57,5 +57,7 @@ export class HeaderComponent {
     this.dataRealTimeService.clearIntervals().subscribe();
     this.router.navigate(['/auth/login-dashboard']);
     this.authGoogleService.signOut();
+    //recharge page for generate new id token
+    location.reload();
   }
 }
