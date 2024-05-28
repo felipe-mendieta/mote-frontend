@@ -45,8 +45,8 @@ export class RoomService {
     this.socketService.on('timeOut').subscribe((data) => {
       console.log(`tiempo inactivo: ${data}`);
       // Verify if browser supports notifications
-     //this.notificationsService.reqNotificationPermission();
-     this.notificationsService.launchNotification('Llevas mucho tiempo inactivo','Tu participación en la clase es importante');
+      //this.notificationsService.reqNotificationPermission();
+      this.notificationsService.launchNotification('Llevas mucho tiempo inactivo', 'Tu participación en la clase es importante');
 
     })
   }
@@ -65,11 +65,11 @@ export class RoomService {
     if (!token) {
       token = this.tokenService.getToken();
     }
-    //clean local storage
-    localStorage.clear();
     //send userId to delete from room table on database
     const userId = this.getUserId();
     this.socketService.emit<JoinRoom>('studentLeaveRoom', { roomCode, token, userId });
+    //clean local storage
+    localStorage.clear();
   }
 
   getRoomId(): string {
