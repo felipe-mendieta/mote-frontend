@@ -48,7 +48,7 @@ export class LoginDashboardComponent implements OnInit {
       sessionStorage.setItem('loggedInUser', JSON.stringify(payLoad));
       //navigate to home/browse
 
-      this.authService.login('admin').subscribe((res) => {
+      this.authService.login('admin',payLoad).subscribe((res) => {
         //console.log(res);
 
         //ng zone

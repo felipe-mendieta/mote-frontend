@@ -20,18 +20,22 @@ export class AuthService {
     private router: Router,
     private http: HttpClient,
     private roomService: RoomService
-  ) {}
-
-  login(rol = '', token = ''): Observable<ResponseLoginDashboard> {
+  ) { }
+  //token = ''
+  login(rol = '', data = {email:'',aud:'',name:'',picture:''}): Observable<ResponseLoginDashboard> {
     // console.log('login service');
     const info = {
       rol: rol,
+      name: data.name,
+      email: data.email,
+      aud: data.aud,
+      picture: data.picture
     };
+    console.log(info);
     return this.http
       .post<ResponseLoginDashboard>(`${this.apiUrl}/auth/login`, info)
       .pipe(
         tap((res) => {
-          console.log(res);
           if (res.ok) {
             this.tokenService.saveToken(res.token);
           }
