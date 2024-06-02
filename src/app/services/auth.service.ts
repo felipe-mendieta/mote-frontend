@@ -38,6 +38,7 @@ export class AuthService {
         tap((res) => {
           if (res.ok) {
             this.tokenService.saveToken(res.token);
+            this.roomService.setUserId(res.userId);
           }
         })
       );
