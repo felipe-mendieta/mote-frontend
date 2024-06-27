@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Activity } from 'src/app/interfaces/activity,interface';
 import { JoinRoom } from 'src/app/interfaces/room.interface';
@@ -11,9 +11,11 @@ import { SidebarService } from 'src/app/services/sidebar.service';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
-  selector: 'dashboard-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+    selector: 'dashboard-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class HomeComponent implements OnInit {
   roomCode = this.roomService.getRoomCode(); //get data from URL

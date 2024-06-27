@@ -6,9 +6,10 @@ import { TokenService } from 'src/app/services/token.service';
 import { DataRealTimeService } from '../../../../services/data-real-time.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    standalone: true,
 })
 export class HeaderComponent {
   sidebarWidth = true; // Initial width

@@ -3,11 +3,16 @@ import { EMOTION } from '../../enums/emotions.enum';
 import { ACTIVITY } from '../../enums/activity.enum';
 import { RoomService } from 'src/app/services/room.service';
 import { ActivityService } from 'src/app/services/activity.service';
+import { RouterLink } from '@angular/router';
+import { ButtonIconTextComponent } from '../../components/button-icon-text/button-icon-text.component';
+import { TitlePageComponent } from '../../components/title-page/title-page.component';
 
 @Component({
-  selector: 'app-my-emotions',
-  templateUrl: './my-emotions.component.html',
-  styleUrls: ['./my-emotions.component.css']
+    selector: 'app-my-emotions',
+    templateUrl: './my-emotions.component.html',
+    styleUrls: ['./my-emotions.component.css'],
+    standalone: true,
+    imports: [TitlePageComponent, ButtonIconTextComponent, RouterLink]
 })
 export class MyEmotionsComponent {
   EMOTION = EMOTION;

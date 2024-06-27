@@ -1,11 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Answer, Question } from 'src/app/interfaces/poll.interface';
 import { MyValidators } from 'src/app/utils/validators';
+import { NgClass, NgFor } from '@angular/common';
 @Component({
-  selector: 'app-single-option-question',
-  templateUrl: './single-option-question.component.html',
-  styleUrls: ['./single-option-question.component.css'],
+    selector: 'app-single-option-question',
+    templateUrl: './single-option-question.component.html',
+    styleUrls: ['./single-option-question.component.css'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+    ],
 })
 export class SingleOptionQuestionComponent implements OnInit {
   @Input() question!: Question;

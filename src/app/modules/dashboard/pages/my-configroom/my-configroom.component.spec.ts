@@ -8,8 +8,8 @@ describe('MyConfigroomComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MyConfigroomComponent]
-    });
+    imports: [MyConfigroomComponent]
+});
     fixture = TestBed.createComponent(MyConfigroomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

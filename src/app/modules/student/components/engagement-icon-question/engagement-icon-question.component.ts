@@ -1,10 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Poll } from '../../../../interfaces/poll.interface'; // Importa la interfaz Poll
 import { HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf, NgFor } from '@angular/common';
 @Component({
-  selector: 'student-engagement-icon-question',
-  templateUrl: './engagement-icon-question.component.html',
-  styleUrls: ['./engagement-icon-question.component.css'],
+    selector: 'student-engagement-icon-question',
+    templateUrl: './engagement-icon-question.component.html',
+    styleUrls: ['./engagement-icon-question.component.css'],
+    standalone: true,
+    imports: [
+        NgSwitch,
+        NgSwitchCase,
+        ReactiveFormsModule,
+        FormsModule,
+        NgSwitchDefault,
+        NgIf,
+        NgFor,
+    ],
 })
 export class EngagementIconQuestionComponent implements OnInit {
   pollData: Poll | null = null; // Usa la interfaz Poll como tipo

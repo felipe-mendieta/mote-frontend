@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Poll } from 'src/app/interfaces/poll.interface';
 import { PollService } from 'src/app/services/poll.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-poll-list',
-  templateUrl: './poll-list.component.html',
-  styleUrls: ['./poll-list.component.css'],
+    selector: 'app-poll-list',
+    templateUrl: './poll-list.component.html',
+    styleUrls: ['./poll-list.component.css'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgFor,
+        NgIf,
+    ],
 })
 export class PollListComponent {
   pollSent: boolean = false;

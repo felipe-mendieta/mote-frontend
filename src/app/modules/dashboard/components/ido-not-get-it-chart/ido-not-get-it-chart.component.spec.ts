@@ -8,8 +8,8 @@ describe('IDoNotGetItChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [IDoNotGetItChartComponent]
-    });
+    imports: [IDoNotGetItChartComponent]
+});
     fixture = TestBed.createComponent(IDoNotGetItChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

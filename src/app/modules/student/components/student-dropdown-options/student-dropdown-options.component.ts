@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'student-dropdown-options',
-  templateUrl: './student-dropdown-options.component.html',
-  styleUrls: ['./student-dropdown-options.component.css'],
+    selector: 'student-dropdown-options',
+    templateUrl: './student-dropdown-options.component.html',
+    styleUrls: ['./student-dropdown-options.component.css'],
+    standalone: true,
 })
 export class StudentDropdownOptionsComponent {
   @Output() optionSelected = new EventEmitter<string>();

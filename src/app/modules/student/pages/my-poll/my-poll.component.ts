@@ -13,11 +13,22 @@ import { Jsonresponse } from 'src/app/interfaces/models/responsejson.model';
 import { PollResponse } from 'src/app/interfaces/models/pollResponse.interface';
 import { Subscription, tap } from 'rxjs';
 import { RoomService } from 'src/app/services/room.service';
+import { ButtonTextComponent } from '../../components/button-text/button-text.component';
+import { LikertQuestionComponent } from '../../components/likert-question/likert-question.component';
+import { NgIf } from '@angular/common';
+import { TitlePageComponent } from '../../components/title-page/title-page.component';
 
 @Component({
-  selector: 'app-my-poll',
-  templateUrl: './my-poll.component.html',
-  styleUrls: ['./my-poll.component.css'],
+    selector: 'app-my-poll',
+    templateUrl: './my-poll.component.html',
+    styleUrls: ['./my-poll.component.css'],
+    standalone: true,
+    imports: [
+        TitlePageComponent,
+        NgIf,
+        LikertQuestionComponent,
+        ButtonTextComponent,
+    ],
 })
 export class MyPollComponent implements OnInit, OnDestroy {
   questionIndex = 0;

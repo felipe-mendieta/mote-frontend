@@ -9,13 +9,12 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { LoginDashboardComponent } from './pages/login-dashboard/login-dashboard.component';
 
 @NgModule({
-  declarations: [LayoutComponent, LoginComponent, LoginFormComponent, LoginDashboardComponent],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-
-  ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        LayoutComponent, LoginComponent, LoginFormComponent, LoginDashboardComponent
+    ],
 })
 export class AuthModule { }

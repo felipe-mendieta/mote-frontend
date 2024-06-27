@@ -5,13 +5,20 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Answer, Question } from 'src/app/interfaces/poll.interface';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-likert-question',
-  templateUrl: './likert-question.component.html',
-  styleUrls: ['./likert-question.component.css'],
+    selector: 'app-likert-question',
+    templateUrl: './likert-question.component.html',
+    styleUrls: ['./likert-question.component.css'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+    ],
 })
 export class LikertQuestionComponent implements OnInit{
   @Input() question!: Question;

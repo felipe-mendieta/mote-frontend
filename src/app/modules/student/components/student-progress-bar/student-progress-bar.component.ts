@@ -4,9 +4,10 @@ import { ClickCounterService } from 'src/app/services/click-counter.service';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';
 
 @Component({
-  selector: 'student-progress-bar',
-  templateUrl: './student-progress-bar.component.html',
-  styleUrls: ['./student-progress-bar.component.css'],
+    selector: 'student-progress-bar',
+    templateUrl: './student-progress-bar.component.html',
+    styleUrls: ['./student-progress-bar.component.css'],
+    standalone: true,
 })
 export class StudentProgressBarComponent implements OnInit {
   @Input() textButton = '';

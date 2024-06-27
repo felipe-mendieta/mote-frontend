@@ -14,9 +14,10 @@ import { lineChartColors } from 'src/app/utils/configchartsettings';
 import { initChartconf } from 'src/app/utils/configchartsettings';
 import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
-  selector: 'app-ido-not-get-it-chart',
-  templateUrl: './ido-not-get-it-chart.component.html',
-  styleUrls: ['./ido-not-get-it-chart.component.css'],
+    selector: 'app-ido-not-get-it-chart',
+    templateUrl: './ido-not-get-it-chart.component.html',
+    styleUrls: ['./ido-not-get-it-chart.component.css'],
+    standalone: true,
 })
 export class IDoNotGetItChartComponent
   implements OnInit, OnDestroy, AfterViewInit

@@ -8,8 +8,8 @@ describe('SurveyResultsChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SurveyResultsChartComponent]
-    });
+    imports: [SurveyResultsChartComponent]
+});
     fixture = TestBed.createComponent(SurveyResultsChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -16,9 +16,10 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { PollEngagementResponse } from 'src/app/interfaces/pollResponses.interface';
 
 @Component({
-  selector: 'app-survey-results-chart',
-  templateUrl: './survey-results-chart.component.html',
-  styleUrls: ['./survey-results-chart.component.css'],
+    selector: 'app-survey-results-chart',
+    templateUrl: './survey-results-chart.component.html',
+    styleUrls: ['./survey-results-chart.component.css'],
+    standalone: true,
 })
 export class SurveyResultsChartComponent implements OnInit, AfterViewInit {
   barChartName: string = 'barChart1';

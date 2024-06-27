@@ -12,12 +12,22 @@ import { ActivityService } from 'src/app/services/activity.service';
 import { Observable, of } from 'rxjs';
 
 import { SumService } from 'src/app/services/sum.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { ButtonIconTextComponent } from '../../components/button-icon-text/button-icon-text.component';
+import { StudentProgressBarComponent } from '../../components/student-progress-bar/student-progress-bar.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: true,
+    imports: [
+        StudentProgressBarComponent,
+        ButtonIconTextComponent,
+        RouterLink,
+        FooterComponent,
+    ],
 })
 export class HomeComponent implements OnInit {
   roomCode = this.roomService.getRoomCode(); //get data from URL

@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestStatus } from 'src/app/interfaces/models/request-status.model';
 import { RoomService } from '../../../../services/room.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'auth-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css'],
+    selector: 'auth-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.css'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgIf,
+    ],
 })
 export class LoginFormComponent {
   isRoomInvalid: boolean = false; // Variable para rastrear si la sala no es válida

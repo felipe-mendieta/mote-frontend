@@ -1,10 +1,15 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ProgressBarService } from 'src/app/services/progress-bar.service';
+import { NgIf } from '@angular/common';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { ButtonIconTextComponent } from '../../components/button-icon-text/button-icon-text.component';
 
 @Component({
-  selector: 'app-my-badge',
-  templateUrl: './my-badge.component.html',
-  styleUrls: ['./my-badge.component.css']
+    selector: 'app-my-badge',
+    templateUrl: './my-badge.component.html',
+    styleUrls: ['./my-badge.component.css'],
+    standalone: true,
+    imports: [ButtonIconTextComponent, FooterComponent, NgIf]
 })
 export class MyBadgeComponent {
   percentProgress = this.progressBarService.getProgress$();

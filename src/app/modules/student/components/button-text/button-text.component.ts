@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'student-button-text',
-  templateUrl: './button-text.component.html',
-  styleUrls: ['./button-text.component.css'],
+    selector: 'student-button-text',
+    templateUrl: './button-text.component.html',
+    styleUrls: ['./button-text.component.css'],
+    standalone: true,
+    imports: [NgClass],
 })
 export class ButtonTextComponent {
   @Input() textButton = '';

@@ -8,8 +8,8 @@ describe('MyPollsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MyPollsComponent]
-    });
+    imports: [MyPollsComponent]
+});
     fixture = TestBed.createComponent(MyPollsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

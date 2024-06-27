@@ -8,8 +8,8 @@ describe('TakeAbreakChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TakeAbreakChartComponent]
-    });
+    imports: [TakeAbreakChartComponent]
+});
     fixture = TestBed.createComponent(TakeAbreakChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -8,8 +8,8 @@ describe('DonnutsEmotionsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DonnutsEmotionsComponent]
-    });
+    imports: [DonnutsEmotionsComponent]
+});
     fixture = TestBed.createComponent(DonnutsEmotionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,11 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Answer, Question } from 'src/app/interfaces/poll.interface';
 import { MyValidators } from 'src/app/utils/validators';
+import { NgClass, NgFor } from '@angular/common';
 @Component({
-  selector: 'app-multiple-option-question',
-  templateUrl: './multiple-option-question.component.html',
-  styleUrls: ['./multiple-option-question.component.css'],
+    selector: 'app-multiple-option-question',
+    templateUrl: './multiple-option-question.component.html',
+    styleUrls: ['./multiple-option-question.component.css'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+    ],
 })
 export class MultipleOptionQuestionComponent implements OnInit {
   @Input() question!: Question;

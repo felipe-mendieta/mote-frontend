@@ -8,8 +8,8 @@ describe('PollListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PollListComponent]
-    });
+    imports: [PollListComponent]
+});
     fixture = TestBed.createComponent(PollListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

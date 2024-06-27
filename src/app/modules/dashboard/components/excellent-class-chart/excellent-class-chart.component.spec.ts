@@ -8,8 +8,8 @@ describe('ExcellentClassChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ExcellentClassChartComponent]
-    });
+    imports: [ExcellentClassChartComponent]
+});
     fixture = TestBed.createComponent(ExcellentClassChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

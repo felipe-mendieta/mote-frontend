@@ -8,8 +8,8 @@ describe('ConfigRoomFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ConfigRoomFormComponent]
-    });
+    imports: [ConfigRoomFormComponent]
+});
     fixture = TestBed.createComponent(ConfigRoomFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

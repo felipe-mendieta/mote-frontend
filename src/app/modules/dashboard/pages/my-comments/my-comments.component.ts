@@ -5,10 +5,13 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { RoomService } from 'src/app/services/room.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { SocketService } from 'src/app/services/socket.service';
+import { CommentCardComponent } from '../../components/comment-card/comment-card.component';
 @Component({
-  selector: 'my-comments',
-  templateUrl: './my-comments.component.html',
-  styleUrls: ['./my-comments.component.css'],
+    selector: 'my-comments',
+    templateUrl: './my-comments.component.html',
+    styleUrls: ['./my-comments.component.css'],
+    standalone: true,
+    imports: [CommentCardComponent],
 })
 export class MyCommentsComponent {
   sidebarWidth = true;

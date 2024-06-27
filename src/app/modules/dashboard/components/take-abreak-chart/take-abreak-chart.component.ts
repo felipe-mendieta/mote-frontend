@@ -14,9 +14,10 @@ import { lineChartColors } from 'src/app/utils/configchartsettings';
 import { initChartconf } from 'src/app/utils/configchartsettings';
 import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
-  selector: 'app-take-abreak-chart',
-  templateUrl: './take-abreak-chart.component.html',
-  styleUrls: ['./take-abreak-chart.component.css'],
+    selector: 'app-take-abreak-chart',
+    templateUrl: './take-abreak-chart.component.html',
+    styleUrls: ['./take-abreak-chart.component.css'],
+    standalone: true,
 })
 export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   barChartName: string = 'barChart1';

@@ -8,8 +8,8 @@ describe('StudentDropdownOptionsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StudentDropdownOptionsComponent]
-    });
+    imports: [StudentDropdownOptionsComponent]
+});
     fixture = TestBed.createComponent(StudentDropdownOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -6,9 +6,10 @@ import { environment } from 'src/environments/environment';
 declare var google: any;
 //import environment from '../../../../../../environments/environment';
 @Component({
-  selector: 'app-login-dashboard',
-  templateUrl: './login-dashboard.component.html',
-  styleUrls: ['./login-dashboard.component.css'],
+    selector: 'app-login-dashboard',
+    templateUrl: './login-dashboard.component.html',
+    styleUrls: ['./login-dashboard.component.css'],
+    standalone: true,
 })
 export class LoginDashboardComponent implements OnInit {
   constructor(

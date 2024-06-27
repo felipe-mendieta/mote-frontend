@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Room } from 'src/app/interfaces/room.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { RoomService } from 'src/app/services/room.service';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'config-room-form',
-  templateUrl: './config-room-form.component.html',
-  styleUrls: ['./config-room-form.component.css'],
+    selector: 'config-room-form',
+    templateUrl: './config-room-form.component.html',
+    styleUrls: ['./config-room-form.component.css'],
+    standalone: true,
+    imports: [NgIf, ReactiveFormsModule],
 })
 export class ConfigRoomFormComponent {
   isRoomCreated: boolean = false;

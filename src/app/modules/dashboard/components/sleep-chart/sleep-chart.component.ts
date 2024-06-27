@@ -14,9 +14,10 @@ import { lineChartColors } from 'src/app/utils/configchartsettings';
 import { initChartconf } from 'src/app/utils/configchartsettings';
 import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
-  selector: 'app-sleep-chart',
-  templateUrl: './sleep-chart.component.html',
-  styleUrls: ['./sleep-chart.component.css'],
+    selector: 'app-sleep-chart',
+    templateUrl: './sleep-chart.component.html',
+    styleUrls: ['./sleep-chart.component.css'],
+    standalone: true,
 })
 export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {
   barChartName: string = 'barChart1';

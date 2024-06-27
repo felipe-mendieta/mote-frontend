@@ -6,11 +6,14 @@ import {
   RecordActivity,
 } from 'src/app/interfaces/activity,interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-comment-card',
-  templateUrl: './comment-card.component.html',
-  styleUrls: ['./comment-card.component.css'],
+    selector: 'app-comment-card',
+    templateUrl: './comment-card.component.html',
+    styleUrls: ['./comment-card.component.css'],
+    standalone: true,
+    imports: [NgFor],
 })
 export class CommentCardComponent implements OnInit {
   comment: string = '';

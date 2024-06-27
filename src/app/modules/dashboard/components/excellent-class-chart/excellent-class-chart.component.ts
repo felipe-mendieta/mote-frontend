@@ -15,9 +15,10 @@ import { initChartconf } from 'src/app/utils/configchartsettings';
 import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 
 @Component({
-  selector: 'excellent-class-chart',
-  templateUrl: './excellent-class-chart.component.html',
-  styleUrls: ['./excellent-class-chart.component.css'],
+    selector: 'excellent-class-chart',
+    templateUrl: './excellent-class-chart.component.html',
+    styleUrls: ['./excellent-class-chart.component.css'],
+    standalone: true,
 })
 export class ExcellentClassChartComponent
   implements OnInit, OnDestroy, AfterViewInit

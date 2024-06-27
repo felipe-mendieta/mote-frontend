@@ -8,8 +8,8 @@ describe('SleepChartComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SleepChartComponent]
-    });
+    imports: [SleepChartComponent]
+});
     fixture = TestBed.createComponent(SleepChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

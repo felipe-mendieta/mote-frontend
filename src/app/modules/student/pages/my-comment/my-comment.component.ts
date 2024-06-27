@@ -4,11 +4,20 @@ import { ACTIVITY } from '../../enums/activity.enum';
 import { ActivityService } from 'src/app/services/activity.service';
 import { RoomService } from 'src/app/services/room.service';
 import { SumService } from 'src/app/services/sum.service';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { ButtonTextComponent } from '../../components/button-text/button-text.component';
+import { TitlePageComponent } from '../../components/title-page/title-page.component';
 
 @Component({
-  selector: 'app-my-comment',
-  templateUrl: './my-comment.component.html',
-  styleUrls: ['./my-comment.component.css'],
+    selector: 'app-my-comment',
+    templateUrl: './my-comment.component.html',
+    styleUrls: ['./my-comment.component.css'],
+    standalone: true,
+    imports: [
+        TitlePageComponent,
+        ButtonTextComponent,
+        FooterComponent,
+    ],
 })
 export class MyCommentComponent {
   roomId = this.roomService.getRoomId();

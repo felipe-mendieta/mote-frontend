@@ -13,9 +13,10 @@ import { charDonnutColors } from 'src/app/utils/configchartsettings';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 
 @Component({
-  selector: 'app-donnuts-emotions',
-  templateUrl: './donnuts-emotions.component.html',
-  styleUrls: ['./donnuts-emotions.component.css'],
+    selector: 'app-donnuts-emotions',
+    templateUrl: './donnuts-emotions.component.html',
+    styleUrls: ['./donnuts-emotions.component.css'],
+    standalone: true,
 })
 export class DonnutsEmotionsComponent
   implements OnInit, OnDestroy, AfterViewInit
