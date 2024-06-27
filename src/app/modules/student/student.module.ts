@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { StudentRoutingModule } from './student-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -31,35 +31,30 @@ import { StudentDropdownOptionsComponent } from './components/student-dropdown-o
 import { MyBadgeComponent } from './pages/my-badge/my-badge.component';
 
 
-@NgModule({
-    imports: [
-    CommonModule,
-    StudentRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    HeaderComponent,
-    EngagementComponent,
-    EngagementIconQuestionComponent,
-    MyPollComponent,
-    HomeComponent,
-    MyEngagementPollComponent,
-    LayoutComponent,
-    MyDoubtComponent,
-    TitlePageComponent,
-    ButtonIconTextComponent,
-    ButtonIconComponent,
-    FooterComponent,
-    ButtonTextComponent,
-    MySuccessComponent,
-    MyEmotionsComponent,
-    LikertQuestionComponent,
-    SingleOptionQuestionComponent,
-    MultipleOptionQuestionComponent,
-    StudentProgressBarComponent,
-    MyCommentComponent,
-    StudentDropdownOptionsComponent,
-    MyBadgeComponent,
-],
-})
+@NgModule({ imports: [CommonModule,
+        StudentRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HeaderComponent,
+        EngagementComponent,
+        EngagementIconQuestionComponent,
+        MyPollComponent,
+        HomeComponent,
+        MyEngagementPollComponent,
+        LayoutComponent,
+        MyDoubtComponent,
+        TitlePageComponent,
+        ButtonIconTextComponent,
+        ButtonIconComponent,
+        FooterComponent,
+        ButtonTextComponent,
+        MySuccessComponent,
+        MyEmotionsComponent,
+        LikertQuestionComponent,
+        SingleOptionQuestionComponent,
+        MultipleOptionQuestionComponent,
+        StudentProgressBarComponent,
+        MyCommentComponent,
+        StudentDropdownOptionsComponent,
+        MyBadgeComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class StudentModule {}
