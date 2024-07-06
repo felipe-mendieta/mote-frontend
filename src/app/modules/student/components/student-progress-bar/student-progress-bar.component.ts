@@ -6,7 +6,7 @@ import { ProgressBarService } from 'src/app/services/progress-bar.service';
 @Component({
     selector: 'student-progress-bar',
     templateUrl: './student-progress-bar.component.html',
-    styleUrls: ['./student-progress-bar.component.css'],
+    styleUrls: ['./student-progress-bar.component.scss'],
     standalone: true,
 })
 export class StudentProgressBarComponent implements OnInit {

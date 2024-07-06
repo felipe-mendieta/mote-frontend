@@ -16,7 +16,7 @@ import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
     selector: 'app-sleep-chart',
     templateUrl: './sleep-chart.component.html',
-    styleUrls: ['./sleep-chart.component.css'],
+    styleUrls: ['./sleep-chart.component.scss'],
     standalone: true,
 })
 export class SleepChartComponent implements OnInit, OnDestroy, AfterViewInit {

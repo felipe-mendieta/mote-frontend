@@ -8,7 +8,7 @@ declare var google: any;
 @Component({
     selector: 'app-login-dashboard',
     templateUrl: './login-dashboard.component.html',
-    styleUrls: ['./login-dashboard.component.css'],
+    styleUrls: ['./login-dashboard.component.scss'],
     standalone: true,
 })
 export class LoginDashboardComponent implements OnInit {

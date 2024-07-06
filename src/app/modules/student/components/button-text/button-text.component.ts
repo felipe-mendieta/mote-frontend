@@ -4,7 +4,7 @@ import { NgClass } from '@angular/common';
 @Component({
     selector: 'student-button-text',
     templateUrl: './button-text.component.html',
-    styleUrls: ['./button-text.component.css'],
+    styleUrls: ['./button-text.component.scss'],
     standalone: true,
     imports: [NgClass],
 })

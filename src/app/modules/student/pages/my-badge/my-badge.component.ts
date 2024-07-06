@@ -7,7 +7,7 @@ import { ButtonIconTextComponent } from '../../components/button-icon-text/butto
 @Component({
     selector: 'app-my-badge',
     templateUrl: './my-badge.component.html',
-    styleUrls: ['./my-badge.component.css'],
+    styleUrls: ['./my-badge.component.scss'],
     standalone: true,
     imports: [ButtonIconTextComponent, FooterComponent, NgIf]
 })

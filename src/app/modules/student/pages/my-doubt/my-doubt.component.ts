@@ -11,7 +11,7 @@ import { TitlePageComponent } from '../../components/title-page/title-page.compo
 @Component({
     selector: 'app-my-doubt',
     templateUrl: './my-doubt.component.html',
-    styleUrls: ['./my-doubt.component.css'],
+    styleUrls: ['./my-doubt.component.scss'],
     standalone: true,
     imports: [
         TitlePageComponent,

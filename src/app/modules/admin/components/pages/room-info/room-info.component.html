@@ -1,0 +1,33 @@
+<div id='enterDiv' class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+        <img src="assets/logos/main-logo.svg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">Crear una sala</div>
+        <!-- <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a> -->
+    </div>
+
+    <div>
+        <label for="email1" class="block text-900 font-medium mb-2">Nombre de la sala</label>
+        <input id="email1" type="text" placeholder="Nombre" pInputText class="w-full mb-3">
+        <button pButton pRipple label="Crear sala" icon="pi pi-sign-in" class="w-full" (click)="toggleDivs()"></button>
+    </div>
+</div>
+
+<div id='exitDiv' class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+        <img src="assets/logos/main-logo.svg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">Descripción de la sala  </div>
+        <!-- <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a> -->
+    </div>
+    
+    <div>
+        <label for="email1" class="block text-900 font-medium mb-2">Tu codigo de sala es:</label>
+        <div class="text-center text-900 text-3xl font-medium mb-3">Tjmp4</div>
+        <div class="flex align-items-center justify-content-between mb-6">
+            <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Copiar código</a>
+        </div>
+
+        <button pButton pRipple label="Salir de la sala" icon="pi pi-sign-out" class="w-full" (click)="toggleDivs()"></button>
+    </div>
+</div>

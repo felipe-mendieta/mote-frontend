@@ -5,7 +5,7 @@ import { NgFor } from '@angular/common';
 @Component({
     selector: 'app-engagement',
     templateUrl: './engagement.component.html',
-    styleUrls: ['./engagement.component.css'],
+    styleUrls: ['./engagement.component.scss'],
     standalone: true,
     imports: [NgFor],
 })

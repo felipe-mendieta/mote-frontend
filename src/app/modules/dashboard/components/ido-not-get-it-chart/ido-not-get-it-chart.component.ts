@@ -16,7 +16,7 @@ import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
     selector: 'app-ido-not-get-it-chart',
     templateUrl: './ido-not-get-it-chart.component.html',
-    styleUrls: ['./ido-not-get-it-chart.component.css'],
+    styleUrls: ['./ido-not-get-it-chart.component.scss'],
     standalone: true,
 })
 export class IDoNotGetItChartComponent

@@ -11,7 +11,7 @@ import { TitlePageComponent } from '../../components/title-page/title-page.compo
 @Component({
     selector: 'app-my-comment',
     templateUrl: './my-comment.component.html',
-    styleUrls: ['./my-comment.component.css'],
+    styleUrls: ['./my-comment.component.scss'],
     standalone: true,
     imports: [
         TitlePageComponent,

@@ -8,7 +8,7 @@ import { NgIf } from '@angular/common';
 @Component({
     selector: 'config-room-form',
     templateUrl: './config-room-form.component.html',
-    styleUrls: ['./config-room-form.component.css'],
+    styleUrls: ['./config-room-form.component.scss'],
     standalone: true,
     imports: [NgIf, ReactiveFormsModule],
 })

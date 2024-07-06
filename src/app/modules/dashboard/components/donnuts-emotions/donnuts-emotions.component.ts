@@ -15,7 +15,7 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 @Component({
     selector: 'app-donnuts-emotions',
     templateUrl: './donnuts-emotions.component.html',
-    styleUrls: ['./donnuts-emotions.component.css'],
+    styleUrls: ['./donnuts-emotions.component.scss'],
     standalone: true,
 })
 export class DonnutsEmotionsComponent

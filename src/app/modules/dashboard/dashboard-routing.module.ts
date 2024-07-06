@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -9,7 +8,7 @@ import { MyPollsComponent } from './pages/my-polls/my-polls.component';
 import { authDashboardGuard } from 'src/app/guards/auth-dashboard.guard';
 import { MySurveyResultsComponent } from './pages/my-survey-results/my-survey-results.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
@@ -20,41 +19,35 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'home',
         component: HomeComponent,
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'my-dashboard',
         component: DashboardComponent,
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'my-comments',
         component: MyCommentsComponent,
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'my-configroom',
         component: MyConfigroomComponent,
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'my-polls',
         component: MyPollsComponent,
       },
       {
-        canActivate: [authDashboardGuard],
+        //canActivate: [authDashboardGuard],
         path: 'my-survey-results',
         component: MySurveyResultsComponent,
       },
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class DashboardRoutingModule {}

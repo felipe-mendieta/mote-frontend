@@ -8,7 +8,7 @@ import { DataRealTimeService } from '../../../../services/data-real-time.service
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
+    styleUrls: ['./header.component.scss'],
     standalone: true,
 })
 export class HeaderComponent {

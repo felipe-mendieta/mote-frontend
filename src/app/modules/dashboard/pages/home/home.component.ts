@@ -13,7 +13,7 @@ import { SocketService } from 'src/app/services/socket.service';
 @Component({
     selector: 'dashboard-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
+    styleUrls: ['./home.component.scss'],
     standalone: true,
     imports: [RouterLink],
 })

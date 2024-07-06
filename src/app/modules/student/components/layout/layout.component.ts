@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
 @Component({
     selector: 'student-layout',
     templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.css'],
+    styleUrls: ['./layout.component.scss'],
     standalone: true,
     imports: [
         HeaderComponent,

@@ -4,7 +4,7 @@ import { PollListComponent } from '../../components/poll-list/poll-list.componen
 @Component({
     selector: 'my-polls',
     templateUrl: './my-polls.component.html',
-    styleUrls: ['./my-polls.component.css'],
+    styleUrls: ['./my-polls.component.scss'],
     standalone: true,
     imports: [PollListComponent],
 })

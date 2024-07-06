@@ -4,7 +4,7 @@ import { SurveyResultsChartComponent } from '../../components/survey-results-cha
 @Component({
     selector: 'my-survey-results',
     templateUrl: './my-survey-results.component.html',
-    styleUrls: ['./my-survey-results.component.css'],
+    styleUrls: ['./my-survey-results.component.scss'],
     standalone: true,
     imports: [SurveyResultsChartComponent],
 })

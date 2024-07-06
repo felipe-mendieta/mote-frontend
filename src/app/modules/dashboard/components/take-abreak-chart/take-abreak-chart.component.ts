@@ -16,7 +16,7 @@ import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 @Component({
     selector: 'app-take-abreak-chart',
     templateUrl: './take-abreak-chart.component.html',
-    styleUrls: ['./take-abreak-chart.component.css'],
+    styleUrls: ['./take-abreak-chart.component.scss'],
     standalone: true,
 })
 export class TakeAbreakChartComponent implements OnInit, AfterViewInit {

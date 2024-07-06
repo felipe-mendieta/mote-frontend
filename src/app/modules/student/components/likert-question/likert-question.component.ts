@@ -12,7 +12,7 @@ import { NgClass, NgFor } from '@angular/common';
 @Component({
     selector: 'app-likert-question',
     templateUrl: './likert-question.component.html',
-    styleUrls: ['./likert-question.component.css'],
+    styleUrls: ['./likert-question.component.scss'],
     standalone: true,
     imports: [
         ReactiveFormsModule,

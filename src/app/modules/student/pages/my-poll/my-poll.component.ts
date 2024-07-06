@@ -21,7 +21,7 @@ import { TitlePageComponent } from '../../components/title-page/title-page.compo
 @Component({
     selector: 'app-my-poll',
     templateUrl: './my-poll.component.html',
-    styleUrls: ['./my-poll.component.css'],
+    styleUrls: ['./my-poll.component.scss'],
     standalone: true,
     imports: [
         TitlePageComponent,

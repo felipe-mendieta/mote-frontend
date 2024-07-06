@@ -6,7 +6,7 @@ import { NgClass, NgFor } from '@angular/common';
 @Component({
     selector: 'app-multiple-option-question',
     templateUrl: './multiple-option-question.component.html',
-    styleUrls: ['./multiple-option-question.component.css'],
+    styleUrls: ['./multiple-option-question.component.scss'],
     standalone: true,
     imports: [
         ReactiveFormsModule,

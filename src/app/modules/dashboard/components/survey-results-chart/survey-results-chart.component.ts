@@ -18,7 +18,7 @@ import { PollEngagementResponse } from 'src/app/interfaces/pollResponses.interfa
 @Component({
     selector: 'app-survey-results-chart',
     templateUrl: './survey-results-chart.component.html',
-    styleUrls: ['./survey-results-chart.component.css'],
+    styleUrls: ['./survey-results-chart.component.scss'],
     standalone: true,
 })
 export class SurveyResultsChartComponent implements OnInit, AfterViewInit {

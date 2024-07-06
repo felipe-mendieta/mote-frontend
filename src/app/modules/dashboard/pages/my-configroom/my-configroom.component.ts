@@ -5,7 +5,7 @@ import { ConfigRoomFormComponent } from '../../components/config-room-form/confi
 @Component({
     selector: 'app-my-configroom',
     templateUrl: './my-configroom.component.html',
-    styleUrls: ['./my-configroom.component.css'],
+    styleUrls: ['./my-configroom.component.scss'],
     standalone: true,
     imports: [ConfigRoomFormComponent],
 })

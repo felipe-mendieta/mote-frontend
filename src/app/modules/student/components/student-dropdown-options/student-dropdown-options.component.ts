@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
     selector: 'student-dropdown-options',
     templateUrl: './student-dropdown-options.component.html',
-    styleUrls: ['./student-dropdown-options.component.css'],
+    styleUrls: ['./student-dropdown-options.component.scss'],
     standalone: true,
 })
 export class StudentDropdownOptionsComponent {

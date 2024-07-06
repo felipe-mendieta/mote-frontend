@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((module) => module.AuthModule),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.routes').then(m=> m.routes),
+  },
+  {
     path: 'student',
     canActivate: [authGuard, roleGuard],
     loadChildren: () =>
@@ -30,10 +35,10 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [authDashboardGuard, dashboardroleGuard],
+    //canActivate: [authDashboardGuard, dashboardroleGuard],
     loadChildren: () =>
-      import('./modules/dashboard/dashboard.module').then(
-        (module) => module.DashboardModule
+      import('./modules/dashboard/dashboard-routing.module').then(
+        (m=> m.routes)
       ),
   },
   {

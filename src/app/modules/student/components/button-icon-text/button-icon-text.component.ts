@@ -6,7 +6,7 @@ import { NgIf, NgClass } from '@angular/common';
 @Component({
     selector: 'student-button-icon-text',
     templateUrl: './button-icon-text.component.html',
-    styleUrls: ['./button-icon-text.component.css'],
+    styleUrls: ['./button-icon-text.component.scss'],
     standalone: true,
     imports: [NgIf, NgClass],
 })

@@ -11,7 +11,7 @@ import { NgFor } from '@angular/common';
 @Component({
     selector: 'app-comment-card',
     templateUrl: './comment-card.component.html',
-    styleUrls: ['./comment-card.component.css'],
+    styleUrls: ['./comment-card.component.scss'],
     standalone: true,
     imports: [NgFor],
 })

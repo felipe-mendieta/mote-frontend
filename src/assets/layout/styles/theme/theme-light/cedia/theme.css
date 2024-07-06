@@ -1,0 +1,18 @@
+/* Error: Undefined variable.
+ *     ,
+ * 664 | $menuitemActiveFocusBg:$highlightFocusBg !default;
+ *     |                        ^^^^^^^^^^^^^^^^^
+ *     '
+ *   ..\_variables.scss 664:24  @import
+ *   theme.scss 9:9             root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a     \2577 \a 664 \2502  $menuitemActiveFocusBg:$highlightFocusBg !default;\a     \2502                         ^^^^^^^^^^^^^^^^^\a     \2575 \a   ..\\_variables.scss 664:24  @import\a   theme.scss 9:9             root stylesheet";
+}

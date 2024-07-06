@@ -10,7 +10,7 @@ import { TitlePageComponent } from '../../components/title-page/title-page.compo
 @Component({
     selector: 'app-my-emotions',
     templateUrl: './my-emotions.component.html',
-    styleUrls: ['./my-emotions.component.css'],
+    styleUrls: ['./my-emotions.component.scss'],
     standalone: true,
     imports: [TitlePageComponent, ButtonIconTextComponent, RouterLink]
 })

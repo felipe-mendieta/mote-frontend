@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
 import { isDevMode, importProvidersFrom } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -20,7 +20,9 @@ bootstrapApplication(AppComponent, {
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000',
         })),
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimations(),
+
     ]
 })
   .catch(err => console.error(err));

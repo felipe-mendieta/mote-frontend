@@ -6,7 +6,7 @@ import { NgClass, NgFor } from '@angular/common';
 @Component({
     selector: 'app-single-option-question',
     templateUrl: './single-option-question.component.html',
-    styleUrls: ['./single-option-question.component.css'],
+    styleUrls: ['./single-option-question.component.scss'],
     standalone: true,
     imports: [
         ReactiveFormsModule,

@@ -5,7 +5,7 @@ import { TitlePageComponent } from '../../components/title-page/title-page.compo
 @Component({
     selector: 'student-my-success',
     templateUrl: './my-success.component.html',
-    styleUrls: ['./my-success.component.css'],
+    styleUrls: ['./my-success.component.scss'],
     standalone: true,
     imports: [TitlePageComponent, FooterComponent],
 })

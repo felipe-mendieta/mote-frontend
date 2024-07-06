@@ -7,7 +7,7 @@ import { NgFor, NgIf } from '@angular/common';
 @Component({
     selector: 'app-poll-list',
     templateUrl: './poll-list.component.html',
-    styleUrls: ['./poll-list.component.css'],
+    styleUrls: ['./poll-list.component.scss'],
     standalone: true,
     imports: [
         ReactiveFormsModule,

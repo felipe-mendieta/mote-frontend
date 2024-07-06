@@ -6,7 +6,7 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault, NgIf, NgFor } from '@angular/c
 @Component({
     selector: 'student-engagement-icon-question',
     templateUrl: './engagement-icon-question.component.html',
-    styleUrls: ['./engagement-icon-question.component.css'],
+    styleUrls: ['./engagement-icon-question.component.scss'],
     standalone: true,
     imports: [
         NgSwitch,

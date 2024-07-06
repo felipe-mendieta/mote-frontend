@@ -9,7 +9,7 @@ import { CommentCardComponent } from '../../components/comment-card/comment-card
 @Component({
     selector: 'my-comments',
     templateUrl: './my-comments.component.html',
-    styleUrls: ['./my-comments.component.css'],
+    styleUrls: ['./my-comments.component.scss'],
     standalone: true,
     imports: [CommentCardComponent],
 })

@@ -10,7 +10,7 @@ import { NgClass, NgIf } from '@angular/common';
 @Component({
     selector: 'auth-login-form',
     templateUrl: './login-form.component.html',
-    styleUrls: ['./login-form.component.css'],
+    styleUrls: ['./login-form.component.scss'],
     standalone: true,
     imports: [
         ReactiveFormsModule,
