@@ -3,6 +3,7 @@ import { AppLayoutComponent } from './components/layout/app.layout.component';
 import { AdminHomeComponent } from './components/pages/admin-home/admin-home.component';
 import { RoomInfoComponent } from "./components/pages/room-info/room-info.component";
 import { DashboardComponent } from "./components/pages/dashboard/dashboard.component";
+import { SurveyComponent } from "./components/pages/survey/survey.component";
 export const routes: Routes = [
   {
     path: '',
@@ -12,6 +13,7 @@ export const routes: Routes = [
       { path: 'comments', data: { breadcrumb: 'comentarios' }, loadChildren: () => import('./components/pages/comments/comments.app.module').then(m => m.CommentsAppModule) },
       { path: 'roomInfo', data: { breadcrumb: 'sala' }, component: RoomInfoComponent},
       { path: 'dashboard', data: { breadcrumb: 'dashboard' }, component: DashboardComponent},
+      { path: 'surveyResults', data: { breadcrumb: 'encuesta' }, component: SurveyComponent},
     ]
   },
 ];

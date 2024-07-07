@@ -11,11 +11,12 @@ import { AvatarModule } from 'primeng/avatar';
 import { ChartModule } from 'primeng/chart';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { RouterModule } from '@angular/router';
 
 @Component({
     templateUrl: './admin-home.component.html',
     standalone: true,
-    imports: [DropdownModule, FormsModule, ChartModule, AvatarModule, ButtonModule, RippleModule, AvatarGroupModule, TabViewModule, TagModule, ProgressBarModule]
+    imports: [RouterModule, DropdownModule, FormsModule, ChartModule, AvatarModule, ButtonModule, RippleModule, AvatarGroupModule, TabViewModule, TagModule, ProgressBarModule]
 })
 export class AdminHomeComponent implements OnInit, OnDestroy {
 

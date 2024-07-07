@@ -35,7 +35,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Estadísticas', icon: 'pi pi-th-large',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-desktop', routerLink: ['/admin/dashboard'] },
+                    { label: 'Dashboard', icon: 'pi pi-chart-pie', routerLink: ['/admin/dashboard'] },
                     { label: 'Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/surveyResults'] }
                 ]
             },
