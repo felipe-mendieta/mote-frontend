@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, NgZone, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { RoomService } from 'src/app/services/room.service';
 import { environment } from 'src/environments/environment';
 declare var google: any;
 //import environment from '../../../../../../environments/environment';
@@ -14,7 +13,6 @@ declare var google: any;
 export class LoginDashboardComponent implements OnInit {
   constructor(
     private router: Router,
-    private roomService: RoomService,
     private ngZone: NgZone,
     private authService: AuthService
   ) {}

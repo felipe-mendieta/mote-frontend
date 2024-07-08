@@ -19,14 +19,14 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home', icon: 'pi pi-home', routerLink: ['/admin']
+                label: 'Home', icon: 'pi pi-home', routerLink: ['/admin/panel']
                 // items: [
                 //     { label: 'SaaS', icon: 'pi pi-desktop', routerLink: ['/'] },
                 //     { label: 'Sales', icon: 'pi pi-chart-bar', routerLink: ['/dashboard-sales'] }
                 // ]
             },
             {
-                label: 'Comentarios', icon: 'pi pi-fw pi-comments',routerLink: ['/admin/comments']
+                label: 'Comentarios', icon: 'pi pi-fw pi-comments',routerLink: ['/admin/panel/comments']
                 // items: [
                 //     { label: 'SaaS', icon: 'pi pi-desktop', routerLink: ['/'] },
                 //     { label: 'Sales', icon: 'pi pi-chart-bar', routerLink: ['/dashboard-sales'] }
@@ -35,12 +35,12 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Estadísticas', icon: 'pi pi-th-large',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-chart-pie', routerLink: ['/admin/dashboard'] },
-                    { label: 'Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/surveyResults'] }
+                    { label: 'Dashboard', icon: 'pi pi-chart-pie', routerLink: ['/admin/panel/dashboard'] },
+                    { label: 'Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/panel/surveyResults'] }
                 ]
             },
             {
-                label: 'Sala', icon: 'pi pi-fw pi-wallet', routerLink: ['/admin/roomInfo']
+                label: 'Sala', icon: 'pi pi-fw pi-wallet', routerLink: ['/admin/panel/roomInfo']
                 // items: [
                 //     { label: 'SaaS', icon: 'pi pi-desktop', routerLink: ['/'] },
                 //     { label: 'Sales', icon: 'pi pi-chart-bar', routerLink: ['/dashboard-sales'] }

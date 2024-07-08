@@ -1,8 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { JoinRoom } from '../interfaces/room.interface';
 
 @Injectable({
   providedIn: 'root',

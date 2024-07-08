@@ -5,7 +5,7 @@ import { inject } from '@angular/core';
 export const authDashboardGuard: CanActivateFn = (route, state) => {
   const token: string | unknown = inject(TokenService).getToken();
   if (!token) {
-    inject(Router).navigate(['/auth/login-dashboard']);
+    inject(Router).navigate(['/admin']);
     return false;
   }
 

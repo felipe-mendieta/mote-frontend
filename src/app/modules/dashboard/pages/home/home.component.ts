@@ -8,7 +8,6 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { PollService } from 'src/app/services/poll.service';
 import { RoomService } from 'src/app/services/room.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
-import { SocketService } from 'src/app/services/socket.service';
 
 @Component({
     selector: 'dashboard-home',

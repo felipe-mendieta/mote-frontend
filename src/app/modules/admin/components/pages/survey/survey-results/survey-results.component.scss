@@ -1,0 +1,7 @@
+.flex-container {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente. Usa 'row' si prefieres una alineación horizontal */
+    justify-content: right; /* Centra los elementos a lo largo del eje principal (verticalmente si la dirección es 'column') */
+    align-items: center; /* Centra los elementos a lo largo del eje cruzado (horizontalmente si la dirección es 'column') */
+    height: 50vh; /* Asegúrate de que el contenedor padre ocupe toda la altura de la ventana del navegador */
+}
