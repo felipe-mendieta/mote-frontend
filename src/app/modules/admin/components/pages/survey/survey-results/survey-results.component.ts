@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/modules/admin/components/layout/service/app.layout.service';
 import { ChartModule } from 'primeng/chart';
+import { DataRealTimeService } from 'src/app/services/data-real-time.service';
+import { PollEngagementResponse } from 'src/app/interfaces/pollResponses.interface';
 
 @Component({
   selector: 'app-survey',
@@ -34,7 +36,7 @@ export class SurveyResultsComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private layoutService: LayoutService) {
+  constructor(private layoutService: LayoutService, private dataRealTimeService: DataRealTimeService) {
     this.subscription = this.layoutService.configUpdate$
       .pipe(debounceTime(25))
       .subscribe((config) => {
@@ -44,6 +46,35 @@ export class SurveyResultsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initCharts();
+    this.loadPreviousValues();
+  }
+
+  loadPreviousValues() {
+    this.dataRealTimeService
+      .getDashboardPollEngagementResponse()
+      .pipe(/*tap((res) => console.log('tap in emotions chart logic get', res))*/)
+      .subscribe((data: PollEngagementResponse) => {
+        if (data != null) {
+          this.updateChart(data);
+        } else {
+          //console.log('No "emotions" activity found.');
+        }
+      });
+  }
+
+  updateChart(data: PollEngagementResponse) {
+    const documentStyle = getComputedStyle(document.documentElement);
+    this.barData = {
+      labels: ['Cognitivo', 'Afectivo', 'Conductual'],
+      datasets: [
+        {
+          backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+          // borderColor: documentStyle.getPropertyValue('--primary-500'),
+          data: [data.cognitive, data.emotional, data.behavioral]
+        },
+      ]
+    };
+    console.log('emotions data', data);
   }
 
   initCharts() {
@@ -73,9 +104,7 @@ export class SurveyResultsComponent implements OnInit, OnDestroy {
     this.barOptions = {
       plugins: {
         legend: {
-          labels: {
-            color: textColor
-          }
+          display: false
         }
       },
       scales: {
