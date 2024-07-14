@@ -39,7 +39,6 @@ export class AppTopBarComponent implements OnInit {
     ) { }
     ngOnInit(): void {
         var user = JSON.parse(sessionStorage.getItem('loggedInUser') || '{}');
-        console.log(user);
         this.profileName = user.name;
         this.email = user.email;
         this.profilePicture = user.picture;

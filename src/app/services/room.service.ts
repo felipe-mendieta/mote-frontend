@@ -59,7 +59,7 @@ export class RoomService {
     localStorage.clear();
     //send userId to delete from room table on database
     const userId = this.getUserId();
-    this.socketService.emit<JoinRoom>('leaveRoom', { roomCode, token, userId });
+    this.socketService.emit<JoinRoom>('adminLeaveRoom', { roomCode, token, userId });
   }
   studentLeaveRoom(roomCode: string, token?: string) {
     if (!token) {

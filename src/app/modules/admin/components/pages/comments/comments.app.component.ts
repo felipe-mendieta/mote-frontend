@@ -6,6 +6,7 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
 import { CommentsComponent } from './comments-list/comments-list.component';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
+import { RecordActivity } from 'src/app/interfaces/activity,interface';
 
 @Component({
     templateUrl: './comments.app.component.html',
@@ -16,17 +17,17 @@ export class CommentsAppComponent implements OnDestroy {
 
     subscription: Subscription;
 
-    todo: Task[] = [];
+    todo: RecordActivity[] = [];
 
-    completed: Task[] = [];
+    completed: RecordActivity[] = [];
 
     constructor(private taskService: CommentsService) {
         this.subscription = this.taskService.taskSource$.subscribe(data => this.categorize(data));
     }
 
-    categorize(tasks: Task[]) {
-        this.todo = tasks.filter(t => t.completed !== true);
-        this.completed = tasks.filter(t => t.completed);
+    categorize(tasks: RecordActivity[]) {
+        this.todo = tasks.filter(t => t.done !== true);
+        this.completed = tasks.filter(t => t.done);
     }
 
     ngOnDestroy() {

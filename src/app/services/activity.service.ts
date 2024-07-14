@@ -29,6 +29,7 @@ export class ActivityService {
       activityType: activityType,
       text,
       userId: this.roomService.getUserId(),
+      done: false,
     });
     //console.log('saveComment');
   }

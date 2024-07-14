@@ -10,6 +10,7 @@ import { AppConfigComponent } from './config/app.config.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { NgClass } from '@angular/common';
+import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 
 @Component({
     selector: 'app-layout',
@@ -33,12 +34,12 @@ export class AppLayoutComponent implements OnDestroy {
 
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
-    constructor(private menuService: MenuService, public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+    constructor(private menuService: MenuService, public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private dataRealTimeService: DataRealTimeService) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
                     const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target)
-                    || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
+                        || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
                     if (isOutsideClicked) {
                         this.hideMenu();
                     }
@@ -69,10 +70,10 @@ export class AppLayoutComponent implements OnDestroy {
         });
 
         this.tabCloseSubscription = this.layoutService.tabClose$.subscribe((event: TabCloseEvent) => {
-            if (this.router.isActive(event.tab.routerLink[0], { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored'})) {
+            if (this.router.isActive(event.tab.routerLink[0], { paths: 'subset', queryParams: 'subset', fragment: 'ignored', matrixParams: 'ignored' })) {
                 const tabs = this.layoutService.tabs;
 
-                if (tabs.length > 1) { 
+                if (tabs.length > 1) {
                     if (event.index === (tabs.length - 1))
                         this.router.navigate(tabs[tabs.length - 2].routerLink);
                     else
@@ -111,11 +112,11 @@ export class AppLayoutComponent implements OnDestroy {
         this.layoutService.state.staticMenuMobileActive = false;
         this.layoutService.state.menuHoverActive = false;
         this.menuService.reset();
-        if(this.menuOutsideClickListener) {
+        if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();
             this.menuOutsideClickListener = null;
         }
-        
+
         if (this.menuScrollListener) {
             this.menuScrollListener();
             this.menuScrollListener = null;

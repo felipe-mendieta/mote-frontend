@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { DialogConfig, Task } from 'src/app/demo/api/comment';
+import { RecordActivity } from 'src/app/interfaces/activity,interface';
 
 @Injectable()
 export class CommentsService {
@@ -12,11 +13,11 @@ export class CommentsService {
         newTask: false
     };
 
-    tasks: Task[] = [];
+    tasks: RecordActivity[] = [];
 
-    private taskSource = new BehaviorSubject<Task[]>(this.tasks);
+    private taskSource = new BehaviorSubject<RecordActivity[]>(this.tasks);
 
-    private selectedTask = new Subject<Task>();
+    private selectedTask = new Subject<RecordActivity>();
 
     private dialogSource = new BehaviorSubject<DialogConfig>(this.dialogConfig);
 
@@ -29,16 +30,16 @@ export class CommentsService {
     constructor(private http: HttpClient) {
         this.http.get<any>('assets/demo/data/tasks.json')
             .toPromise()
-            .then(res => res.data as Task[])
+            .then(res => res.data as RecordActivity[])
             .then(data => {
                 this.tasks = data;
                 this.taskSource.next(data);
             });
     }
 
-    addTask(task: Task) {
+    addTask(task: RecordActivity) {
         if (this.tasks.includes(task)) {
-            this.tasks = this.tasks.map(t => t.id === task.id ? task : t);
+            this.tasks = this.tasks.map(t => t._id === task._id ? task : t);
         }
         else {
             this.tasks = [...this.tasks, task];
@@ -48,16 +49,16 @@ export class CommentsService {
     }
 
     removeTask(id: number) {
-        this.tasks = this.tasks.filter(t => t.id !== id);
+        this.tasks = this.tasks.filter(t => t._id !== id.toString());
         this.taskSource.next(this.tasks);
     }
 
-    onTaskSelect(task: Task) {
+    onTaskSelect(task: RecordActivity) {
         this.selectedTask.next(task);
     }
 
-    markAsCompleted(task: Task) {
-        this.tasks = this.tasks.map(t => t.id === task.id ? task : t);
+    markAsCompleted(task: RecordActivity) {
+        this.tasks = this.tasks.map(t => t._id === task._id ? task : t);
         this.taskSource.next(this.tasks);
     }
 

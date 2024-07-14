@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { RecordActivity } from 'src/app/interfaces/activity,interface';
 
 @Component({
     selector: 'app-create-task',
@@ -24,13 +25,13 @@ import { ToastModule } from 'primeng/toast';
 })
 export class CreateCommentComponent implements OnInit, OnDestroy {
 
-    task!: Task;
+    task!: RecordActivity;
 
     members: Member[] = [];
 
     filteredMembers: Member[] = [];
 
-    dialogConfig: DialogConfig = {header: '', visible: false};
+    dialogConfig: DialogConfig = { header: '', visible: false };
 
     subscription: Subscription;
 
@@ -39,16 +40,16 @@ export class CreateCommentComponent implements OnInit, OnDestroy {
         this.subscription = this.taskService.selectedTask$.subscribe(data => this.task = data);
         this.dialogSubscription = this.taskService.dialogSource$.subscribe(data => {
             this.dialogConfig = data;
-            
-            if(this.dialogConfig.newTask) {
-                this.resetTask();
+
+            if (this.dialogConfig.newTask) {
+                // this.resetTask();
             }
         });
     }
 
     ngOnInit(): void {
         this.memberService.getMembers().then(members => this.members = members);
-        this.resetTask();
+        // this.resetTask();
     }
 
     filterMembers(event: any) {
@@ -65,24 +66,24 @@ export class CreateCommentComponent implements OnInit, OnDestroy {
         this.filteredMembers = filtered;
     }
 
-    save() {
-        this.task.id = Math.floor(Math.random() * 1000);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Task "${this.task.name}" created successfully.` });
-        this.taskService.addTask(this.task);
+    // save() {
+    //     this.task.id = Math.floor(Math.random() * 1000);
+    //     this.messageService.add({ severity: 'success', summary: 'Success', detail: `Task "${this.task.name}" created successfully.` });
+    //     this.taskService.addTask(this.task);
+    //     this.taskService.closeDialog();
+    // }
+
+    cancelTask() {
+        // this.resetTask()
         this.taskService.closeDialog();
     }
 
-    cancelTask(){
-        this.resetTask()
-        this.taskService.closeDialog();
-    }
-
-    resetTask() {
-        this.task = { id: this.task && this.task.id ? this.task.id : Math.floor(Math.random() * 1000), status: 'Waiting' };
-    }
+    // resetTask() {
+    //     this.task = { id: this.task && this.task.id ? this.task.id : Math.floor(Math.random() * 1000), status: 'Waiting' };
+    // }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
-    
+
 }

@@ -37,6 +37,7 @@ export class DataRealTimeService implements OnInit {
     roomId: '',
     text: '',
     date: new Date(),
+    done: false,
   };
   private activityComment: CreateActivityCommentDTO = {
     roomId: '',
@@ -94,16 +95,17 @@ export class DataRealTimeService implements OnInit {
       });
 
     this.socketService
-      .on<RecordActivity>('activityCommentRealTime')
-      .pipe
-      /*tap((value) =>
+      .on<any>('activityCommentRealTime')
+      .pipe(
+        tap((value) =>
           console.log(
             '(tap en data-real-time-service) Escuchando el evento activityCommentRealTime',
             value
           )
-        )*/
-      ()
+        )
+      )
       .subscribe((activity: RecordActivity) => {
+        console.log('estoy en data-real-time-service');
         this.activityCommentSubject.next(activity);
       });
 

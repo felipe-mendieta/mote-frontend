@@ -9,21 +9,21 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { NgFor } from '@angular/common';
 
 @Component({
-    selector: 'app-comment-card',
-    templateUrl: './comment-card.component.html',
-    styleUrls: ['./comment-card.component.scss'],
-    standalone: true,
-    imports: [NgFor],
+  selector: 'app-comment-card',
+  templateUrl: './comment-card.component.html',
+  styleUrls: ['./comment-card.component.scss'],
+  standalone: true,
+  imports: [NgFor],
 })
 export class CommentCardComponent implements OnInit {
   comment: string = '';
-  constructor(private dataRealTimeService: DataRealTimeService) {}
+  constructor(private dataRealTimeService: DataRealTimeService) { }
   comments: RecordActivity[] = [];
   ngOnInit() {
     this.dataRealTimeService
       .getActivityComment$()
       .pipe(
-        //tap((res) => console.log('estoy comment card')),
+        tap((res) => console.log('estoy comment card')),
         filter((activity: RecordActivity) => activity.activityType == 'comment')
       )
       .subscribe((activity) => {

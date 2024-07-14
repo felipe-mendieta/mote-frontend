@@ -21,6 +21,7 @@ export interface RecordActivity {
   roomId: string;
   text: string;
   date: Date;
+  done: boolean;
 }
 
 export interface CreateActivityCommentDTO
