@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit{
 		  theme: 'filled_blue',
 		  size: 'large',
 		  shape: 'rectangle',
-		  width: 350,
+		  width: 300,
 		});
 	  }
 
