@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, debounceTime } from 'rxjs';
-import { LayoutService } from '../../layout/service/app.layout.service';
+import { LayoutService } from '../../components/layout/service/app.layout.service';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TagModule } from 'primeng/tag';
 import { TabViewModule } from 'primeng/tabview';
@@ -12,6 +12,7 @@ import { ChartModule } from 'primeng/chart';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { RouterModule } from '@angular/router';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
     templateUrl: './admin-home.component.html',
@@ -20,13 +21,15 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminHomeComponent implements OnInit, OnDestroy {
 
+    roomCode = this.roomService.getRoomCode();
+
     overviewChartData: any;
 
     overviewChartOptions: any;
 
     overviewWeeks: any;
 
-    selectedOverviewWeek: any ;
+    selectedOverviewWeek: any;
 
     revenueChartData: any;
 
@@ -34,20 +37,22 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(public layoutService: LayoutService) { 
+    constructor(public layoutService: LayoutService,
+        private roomService: RoomService) {
         this.subscription = this.layoutService.configUpdate$
-        .pipe(debounceTime(25))
-        .subscribe((config) => {
-            this.initCharts();
-        });
+            .pipe(debounceTime(25))
+            .subscribe((config) => {
+                this.initCharts();
+            });
     }
 
     ngOnInit() {
-        this.initCharts();
-
+        if (this.roomCode) {
+            this.roomService.joinRoom(this.roomCode);
+        }
         this.overviewWeeks = [
-            {name: 'Last Week', code: '0'},
-            {name: 'This Week', code: '1'}
+            { name: 'Last Week', code: '0' },
+            { name: 'This Week', code: '1' }
         ];
         this.selectedOverviewWeek = this.overviewWeeks[0]
     }
@@ -76,7 +81,7 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
                 {
                     label: 'Referral',
                     data: [4.88, 3, 6.2, 4.5, 2.1, 5.1, 4.1],
-                    backgroundColor: [this.layoutService.config().colorScheme === 'dark' ? '#879AAF' : '#E4E7EB'] ,
+                    backgroundColor: [this.layoutService.config().colorScheme === 'dark' ? '#879AAF' : '#E4E7EB'],
                     hoverBackgroundColor: [primaryColor300],
                     fill: true,
                     borderRadius: 10,
@@ -106,7 +111,7 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
                     min: 0,
                     ticks: {
                         stepSize: 0,
-                        callback: function(value: number, index: number) {
+                        callback: function (value: number, index: number) {
                             if (index === 0) {
                                 return value;
                             }
@@ -208,13 +213,13 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
         if (this.selectedOverviewWeek.code === '1') {
             this.overviewChartData.datasets[0].data = dataSet2[parseInt('0')];
             this.overviewChartData.datasets[1].data = dataSet2[parseInt('1')];
-        } 
+        }
         else {
             this.overviewChartData.datasets[0].data = dataSet1[parseInt('0')];
             this.overviewChartData.datasets[1].data = dataSet1[parseInt('1')];
         }
 
-        this.overviewChartData = {...this.overviewChartData};
+        this.overviewChartData = { ...this.overviewChartData };
     }
 
     get colorScheme(): string {

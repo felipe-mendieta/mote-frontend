@@ -19,7 +19,7 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
     standalone: true,
 })
 export class DonnutsEmotionsComponent
-  implements OnInit, OnDestroy, AfterViewInit
+  implements OnInit, OnDestroy
 {
   chartType: string = 'doughnut';
   donnutChartLabels: string[] = [
@@ -46,6 +46,15 @@ export class DonnutsEmotionsComponent
   };
   constructor(private dataRealTimeService: DataRealTimeService) {}
   ngOnInit() {
+    this.emotionsDataSubscription = this.dataRealTimeService
+      .getEmotionsDataObservable$()
+      .subscribe((newData: Emotion) => {
+        if (this.emotionsChart) {
+          this.updateChart(newData);
+        } else {
+          this.initChart(newData);
+        }
+      });
     this.loadPreviousValues();
   }
 

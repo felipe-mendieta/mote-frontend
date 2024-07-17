@@ -1,0 +1,14 @@
+<div class="grid p-fluid">
+    <div class="col-12 lg:col-4 dashboard-conatiner">
+        <app-emotions-chart></app-emotions-chart>
+    </div>
+    <div class="col-12 lg:col-4 dashboard-conatiner">
+        <app-excellent-class-chart></app-excellent-class-chart>
+    </div>
+    <div class="col-12 lg:col-4">
+        <div class="card">
+            <h5>Tengo sueño</h5>
+            <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
+        </div>
+    </div>
+</div>
