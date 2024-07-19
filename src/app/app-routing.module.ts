@@ -51,7 +51,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       bindToComponentInputs: true,
-      useHash: true,
+      useHash: false,
     }),
   ],
   exports: [RouterModule],

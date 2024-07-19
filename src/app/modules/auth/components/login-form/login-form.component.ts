@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { RequestStatus } from 'src/app/interfaces/models/request-status.model';
 import { RoomService } from '../../../../services/room.service';
 import { environment } from 'src/environments/environment';
@@ -27,12 +27,24 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private roomService: RoomService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {
     this.builForm();
   }
-
-  ngOnInit(): void {}
+//http://localhost:4200/#/auth/login?room=V5pv
+  ngOnInit(): void {
+    //print my actual link for this component
+    console.log(this.router.url);
+    //join with qr code room
+    this.route.queryParams.subscribe((params) => {
+      if (params['room']) {
+        console.log("trying to join with qr",params['room']);
+        this.miFormulario.get('userPin')?.setValue(params['room']);
+        this.loginRoom();
+      }
+    });
+  }
 
   get isPinValid() {
     return (
