@@ -4,13 +4,16 @@ import { LayoutService } from 'src/app/modules/admin/components/layout/service/a
 import { ChartModule } from 'primeng/chart';
 import { EmotionsChartComponent } from "../../components/emotions-chart/emotions-chart.component";
 import { ExcellentClassChartComponent } from "../../components/excellent-class-chart/excellent-class-chart.component";
+import { SleepChartComponent } from "../../components/sleep-chart/sleep-chart.component";
+import { IdoNotGetItChartComponent } from "../../components/ido-not-get-it-chart/ido-not-get-it-chart.component";
+import { TakeAbreakChartComponent } from "../../components/take-abreak-chart/take-abreak-chart.component";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [ChartModule, EmotionsChartComponent, ExcellentClassChartComponent]
+  imports: [ChartModule, EmotionsChartComponent, ExcellentClassChartComponent, SleepChartComponent, IdoNotGetItChartComponent, TakeAbreakChartComponent]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 

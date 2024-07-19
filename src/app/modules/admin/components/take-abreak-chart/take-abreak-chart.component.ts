@@ -8,13 +8,13 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { initChartconf } from 'src/app/utils/configchartsettings';
 
 @Component({
-  selector: 'app-excellent-class-chart',
+  selector: 'app-take-abreak-chart',
   standalone: true,
   imports: [ChartModule],
-  templateUrl: './excellent-class-chart.component.html',
-  styleUrl: './excellent-class-chart.component.scss'
+  templateUrl: './take-abreak-chart.component.html',
+  styleUrl: './take-abreak-chart.component.scss'
 })
-export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
+export class TakeAbreakChartComponent implements OnInit, AfterViewInit {
   barData: any;
   barOptions: any;
   subscription: Subscription;
@@ -46,7 +46,7 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
       .pipe(
         //tap((res) => console.log('tap en excellent chart logic', res)),
         filter<DashboardActivity>(
-          (activity) => activity.activityType == ACTIVITY.iloveit
+          (activity) => activity.activityType == ACTIVITY.break
         )
       )
       .subscribe((activity: DashboardActivity) => {
@@ -127,7 +127,7 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
         map<DashboardActivity[], DashboardActivity[]>(
           (activities: DashboardActivity[]) => {
             return activities.filter((activity: DashboardActivity) => {
-              return activity.activityType === ACTIVITY.iloveit;
+              return activity.activityType === ACTIVITY.break;
             });
           }
         )
@@ -208,3 +208,4 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
   }
 
 }
+

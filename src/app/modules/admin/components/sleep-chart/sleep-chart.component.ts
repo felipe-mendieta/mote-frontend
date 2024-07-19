@@ -8,13 +8,13 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { initChartconf } from 'src/app/utils/configchartsettings';
 
 @Component({
-  selector: 'app-excellent-class-chart',
+  selector: 'app-sleep-chart',
   standalone: true,
   imports: [ChartModule],
-  templateUrl: './excellent-class-chart.component.html',
-  styleUrl: './excellent-class-chart.component.scss'
+  templateUrl: './sleep-chart.component.html',
+  styleUrl: './sleep-chart.component.scss'
 })
-export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
+export class SleepChartComponent implements OnInit, AfterViewInit {
   barData: any;
   barOptions: any;
   subscription: Subscription;
@@ -46,7 +46,7 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
       .pipe(
         //tap((res) => console.log('tap en excellent chart logic', res)),
         filter<DashboardActivity>(
-          (activity) => activity.activityType == ACTIVITY.iloveit
+          (activity) => activity.activityType == ACTIVITY.sleep
         )
       )
       .subscribe((activity: DashboardActivity) => {
@@ -127,7 +127,7 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
         map<DashboardActivity[], DashboardActivity[]>(
           (activities: DashboardActivity[]) => {
             return activities.filter((activity: DashboardActivity) => {
-              return activity.activityType === ACTIVITY.iloveit;
+              return activity.activityType === ACTIVITY.sleep;
             });
           }
         )
@@ -147,6 +147,7 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
               this.previousValues.length,
               ...this.previousValues
             );
+
             // console.log(
             //   'Se ejecuta  "isPositionWithinDataRange"',
             //   this.interactionsPerInterval
@@ -170,7 +171,6 @@ export class ExcellentClassChartComponent implements OnInit, AfterViewInit {
       'el tamano del vector de la grafica excellent-class',
       this.lineChart.data.datasets[0].data.length
     );*/
-    console.log('current position', this.currentPosition);
     return this.currentPosition <= 12;
   }
 
