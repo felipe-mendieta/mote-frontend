@@ -1,6 +1,6 @@
 <div class="grid-container">
-<div class="flex-container">
-    <div id='enterDiv' class="surface-card p-4 shadow-2 border-round w-full lg:w-5">
+<div class="create-room-container">
+    <div id='enterDiv' class="surface-card p-4 shadow-2 border-round">
         <div class="text-center mb-5">
             <img src="assets/logos/main-logo.svg" alt="Image" height="50" class="mb-3">
             <div class="text-900 text-3xl font-medium mb-3">Crear una sala</div>
@@ -21,7 +21,7 @@
         </form>
     </div>
 
-    <div id='exitDiv' class="surface-card p-4 shadow-2 border-round w-full lg:w-5">
+    <div id='exitDiv' class="surface-card p-4 shadow-2 border-round">
         <div class="text-center mb-5">
             <img src="assets/logos/main-logo.svg" alt="Image" height="50" class="mb-3">
             <div class="text-900 text-3xl font-medium mb-3">Descripción de la sala </div>
@@ -41,12 +41,13 @@
         </div>
     </div>
 </div>
-  <div class="flex-container">
-<div id='qr-card' class="surface-card p-4 shadow-2 border-round w-full lg:w-5 center-qr" *ngIf="isRoomCreated">
-  <qr-code value="{{qrCodeUrl}}"
-           size="250"
-           errorCorrectionLevel="M"
+<div id='qr-card' class="surface-card shadow-2 border-round center-qr" *ngIf="isRoomCreated">
+  <div class=".center-qr">
+    <qr-code value="{{qrCodeUrl}}"
+             size="250"
+             errorCorrectionLevel="M"
 
-  />
+    />
+  </div>
 </div>
 </div>

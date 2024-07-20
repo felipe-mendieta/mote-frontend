@@ -14,7 +14,7 @@
 }
 
 .center-qr {
-  margin-top: 1rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +22,9 @@
 }
 
 .grid-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr; /* Divide el contenedor en dos columnas */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
+  gap: 2rem; /* Espacio entre las columnas */
+  justify-content: center; /* Centra las columnas */
+
 }

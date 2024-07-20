@@ -36,6 +36,7 @@ export class RoomInfoComponent {
   }
 
   ngOnInit() {
+    //create the code in the first load if the room is already created
     if(this.newCode) {
       this.qrCodeUrl = this.createUrlCode();
     }
