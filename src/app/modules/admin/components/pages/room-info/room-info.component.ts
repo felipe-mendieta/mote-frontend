@@ -6,15 +6,19 @@ import { RoomService } from 'src/app/services/room.service';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { Room } from 'src/app/interfaces/room.interface';
 import { NgIf } from '@angular/common';
+import {Ripple} from "primeng/ripple";
+import {environment} from "../../../../../../environments/environment";
+import {QrCodeModule} from "ng-qrcode";
 
 @Component({
   selector: 'app-room-info',
   standalone: true,
-  imports: [ButtonModule, InputTextModule, NgIf, ReactiveFormsModule],
+  imports: [ButtonModule, InputTextModule, NgIf, ReactiveFormsModule, Ripple, QrCodeModule],
   templateUrl: './room-info.component.html',
   styleUrl: './room-info.component.scss'
 })
 export class RoomInfoComponent {
+  qrCodeUrl: string = '';
   isRoomCreated: boolean = false;
   myFormRoom: FormGroup = this.formBuilder.group({});
   newCode: string = '';
@@ -32,6 +36,9 @@ export class RoomInfoComponent {
   }
 
   ngOnInit() {
+    if(this.newCode) {
+      this.qrCodeUrl = this.createUrlCode();
+    }
     this.toggleDivs();
   }
 
@@ -56,8 +63,10 @@ export class RoomInfoComponent {
         //console.log('Nueva sala creada con exito', response);
         this.newCode = response.code;
         this.newRoomId = response._id;
+
+        this.qrCodeUrl = this.createUrlCode();
       });
-      
+
       this.roomService.setRoomId(this.newRoomId);
       this.roomService.joinRoom(this.newCode);
       this.isRoomCreated = true;
@@ -104,6 +113,10 @@ export class RoomInfoComponent {
     }, (err) => {
       console.error('Error al copiar el código: ', err);
     });
+  }
+
+  private createUrlCode() {
+    return `${environment.mainUrl}/auth/login?room=${this.newCode}`;;
   }
 }
 

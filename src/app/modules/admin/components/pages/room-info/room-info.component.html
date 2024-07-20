@@ -1,3 +1,4 @@
+<div class="grid-container">
 <div class="flex-container">
     <div id='enterDiv' class="surface-card p-4 shadow-2 border-round w-full lg:w-5">
         <div class="text-center mb-5">
@@ -39,4 +40,13 @@
             </div>
         </div>
     </div>
+</div>
+  <div class="flex-container">
+<div id='qr-card' class="surface-card p-4 shadow-2 border-round w-full lg:w-5 center-qr" *ngIf="isRoomCreated">
+  <qr-code value="{{qrCodeUrl}}"
+           size="250"
+           errorCorrectionLevel="M"
+
+  />
+</div>
 </div>

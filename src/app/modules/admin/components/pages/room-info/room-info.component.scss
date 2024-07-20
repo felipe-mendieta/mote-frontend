@@ -12,3 +12,16 @@
     align-items: center; /* Centra los elementos a lo largo del eje cruzado (horizontalmente si la dirección es 'column') */
     height: 50vh; /* Asegúrate de que el contenedor padre ocupe toda la altura de la ventana del navegador */
 }
+
+.center-qr {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* Divide el contenedor en dos columnas */
+}
