@@ -1,7 +1,7 @@
 <div class="layout-topbar">
-    <a class="app-logo" routerLink="/">
+    <a class="app-logo" routerLink="/admin/panel">
         <img alt="app logo" [src]="logo">
-        <span class="app-name">Verona</span>
+        <span class="app-name">MoTe</span>
     </a>
     
     <button #menubutton class="topbar-menubutton p-link" type="button" (click)="onMenuButtonClick()">
@@ -18,7 +18,7 @@
             <i class="pi pi-times" (click)="removeTab($event, item, i)"></i>
         </li>
         <li *ngIf="!tabs || tabs.length === 0" class="topbar-menu-empty">
-            Administration panel
+            Panel de administración
         </li>
     </ul>
 

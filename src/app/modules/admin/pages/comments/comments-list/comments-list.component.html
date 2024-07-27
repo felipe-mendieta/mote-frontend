@@ -5,7 +5,7 @@
             class="flex flex-column gap-3 md:flex-row md:align-items-center p-2 border-bottom-1 surface-border">
             <div class="flex align-items-center flex-1">
                 <p-checkbox [binary]="true" (onChange)="onCheckboxChange($event, task)" [(ngModel)]="task.done"
-                    [inputId]="task._id.toString()"></p-checkbox>
+                    [inputId]="task._id"></p-checkbox>
                 <label for="task.id" style="word-break: break-word;" class="font-medium ml-2"
                     [ngClass]="{'line-through': task.done}">{{task.text}}</label>
             </div>
