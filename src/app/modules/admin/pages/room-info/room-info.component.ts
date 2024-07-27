@@ -7,8 +7,9 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { Room } from 'src/app/interfaces/room.interface';
 import { NgIf } from '@angular/common';
 import {Ripple} from "primeng/ripple";
-import {environment} from "../../../../../../environments/environment";
+
 import {QrCodeModule} from "ng-qrcode";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-room-info',
