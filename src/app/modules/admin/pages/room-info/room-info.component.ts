@@ -6,10 +6,10 @@ import { RoomService } from 'src/app/services/room.service';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { Room } from 'src/app/interfaces/room.interface';
 import { NgIf } from '@angular/common';
-import {Ripple} from "primeng/ripple";
+import { Ripple } from "primeng/ripple";
 
-import {QrCodeModule} from "ng-qrcode";
-import {environment} from "../../../../../environments/environment";
+import { QrCodeModule } from "ng-qrcode";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-room-info',
@@ -38,7 +38,7 @@ export class RoomInfoComponent {
 
   ngOnInit() {
     //create the code in the first load if the room is already created
-    if(this.newCode) {
+    if (this.newCode) {
       this.qrCodeUrl = this.createUrlCode();
     }
     this.toggleDivs();
@@ -58,7 +58,7 @@ export class RoomInfoComponent {
     return;
   }
 
-  createRoom() {
+  async createRoom() {
     if (this.myFormRoom.valid) {
       const newRoom = this.myFormRoom.get('roomName')?.value;
       this.roomService.createRoom(newRoom).subscribe((response: Room) => {
@@ -67,12 +67,12 @@ export class RoomInfoComponent {
         this.newRoomId = response._id;
 
         this.qrCodeUrl = this.createUrlCode();
+        this.roomService.setRoomId(this.newRoomId);
+        this.roomService.joinRoom(this.newCode);
+        this.isRoomCreated = true;
+        this.toggleDivs();
       });
 
-      this.roomService.setRoomId(this.newRoomId);
-      this.roomService.joinRoom(this.newCode);
-      this.isRoomCreated = true;
-      this.toggleDivs();
     }
   }
 

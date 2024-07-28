@@ -34,13 +34,14 @@ export class RoomService {
     localStorage.setItem(storageKey, userId);
   }
 
-  joinRoom(roomCode: string, token?: string) {
+  joinRoom(roomCode: string, token?: string,) {
     if (!token) {
       token = this.tokenService.getToken();
     }
 
     //send userId to save into room table on database
     const userId = this.getUserId();
+    console.log('este es el userId en room service', userId);
     this.socketService.emit<JoinRoom>('joinRoom', { roomCode, token, userId });
     this.socketService.on('timeOut').subscribe((data) => {
       console.log(`tiempo inactivo: ${data}`);
@@ -74,13 +75,14 @@ export class RoomService {
 
   getRoomId(): string {
     let storageKey = 'roomId';
-    const roomId = this.roomId || localStorage.getItem(storageKey);
+    const roomId = localStorage.getItem(storageKey) || this.roomId;
     //console.log('este es el room ID en room service', roomId);
     return roomId || '';
   }
   getUserId(): string {
     let storageKey = 'userId';
-    const userId = this.userId || localStorage.getItem(storageKey);
+    const userId = localStorage.getItem(storageKey) || this.userId;
+    //console.log('este es el userId en getUserId', userId);
     return userId || '';
   }
 

@@ -47,9 +47,9 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (this.roomCode) {
-            this.roomService.joinRoom(this.roomCode);
-        }
+        // if (this.roomCode) {
+        //     this.roomService.joinRoom(this.roomCode);
+        // }
         this.overviewWeeks = [
             { name: 'Last Week', code: '0' },
             { name: 'This Week', code: '1' }

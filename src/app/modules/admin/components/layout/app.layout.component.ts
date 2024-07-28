@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { TabCloseEvent } from './api/tabcloseevent';
@@ -11,6 +11,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { NgClass } from '@angular/common';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
     selector: 'app-layout',
@@ -18,7 +19,8 @@ import { DataRealTimeService } from 'src/app/services/data-real-time.service';
     standalone: true,
     imports: [NgClass, AppTopBarComponent, AppSidebarComponent, AppBreadcrumbComponent, RouterOutlet, AppFooterComponent, AppConfigComponent]
 })
-export class AppLayoutComponent implements OnDestroy {
+export class AppLayoutComponent implements OnDestroy, OnInit {
+    roomCode = this.roomService.getRoomCode();
 
     overlayMenuOpenSubscription: Subscription;
 
@@ -34,7 +36,7 @@ export class AppLayoutComponent implements OnDestroy {
 
     @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
 
-    constructor(private menuService: MenuService, public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private dataRealTimeService: DataRealTimeService) {
+    constructor(private roomService: RoomService, private menuService: MenuService, public layoutService: LayoutService, public renderer: Renderer2, public router: Router, private dataRealTimeService: DataRealTimeService) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
@@ -86,6 +88,11 @@ export class AppLayoutComponent implements OnDestroy {
 
             this.layoutService.closeTab(event.index);
         });
+    }
+    ngOnInit(): void {
+        if (this.roomCode) {
+            this.roomService.joinRoom(this.roomCode);
+        }
     }
 
     blockBodyScroll(): void {
