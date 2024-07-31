@@ -16,7 +16,9 @@ import { NgIf, NgClass, NgFor } from '@angular/common';
     selector: '[app-menuitem]',
     template: `
 		<ng-container>
-                <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{item.label}}</div>
+                <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">
+                    <a [routerLink]="item.routerLink">{{item.label}}</a>
+                </div>
 			<a *ngIf="(!item.routerLink || item.items) && item.visible !== false" [attr.href]="item.url" (click)="itemClick($event)" (mouseenter)="onMouseEnter()"
 			   [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple [pTooltip]="item.label" [tooltipDisabled]="!(isSlim && root && !active)">
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>

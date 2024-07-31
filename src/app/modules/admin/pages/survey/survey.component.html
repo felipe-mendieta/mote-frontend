@@ -2,7 +2,7 @@
     <div class="col-12 lg:col-6 xl:col-3">
         <div class="flex-container" style="display: flex;">
             <div class="poll col-12" *ngFor="let poll of pollList; index as i">
-                <form [formGroup]="myPolls" class="margin-inline" (ngSubmit)="sendPoll(poll._id)">
+                <form [formGroup]="myPolls" class="margin-inline" (ngSubmit)="sendPoll(poll._id,i)">
                     <div class="card h-full">
                         <h5>{{ poll.pollTitle }}</h5>
                         <ul class="list-none p-0 m-0">
@@ -17,7 +17,7 @@
                                 </li>
                             </div>
                         </ul>
-                        <div *ngIf="pollSent" class="alert alert-success mt-3" role="alert">
+                        <div *ngIf="pollSent[i]" class="alert alert-success mt-3" role="alert">
                             <p class="success-message-color">Encuesta enviada con éxito.</p>
                         </div>
                         <button type="submit" pButton pRipple class="w-full mt-3 " label="Enviar encuesta"

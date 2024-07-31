@@ -19,7 +19,7 @@ export class SurveyComponent {
   myPolls: FormGroup = this.formBuilder.group({});
   pollControlName = 'IdControl';
   pollID: string = '';
-  pollSent: boolean = false;
+  pollSent: boolean[] = [];
   constructor(
     private pollService: PollService,
     private formBuilder: FormBuilder,
@@ -28,6 +28,7 @@ export class SurveyComponent {
     this.pollService.getAllPolls().subscribe((polls: Poll[]) => {
       if (polls) {
         this.pollList = polls;
+        this.pollSent = new Array(this.pollList.length).fill(false); // Inicializa pollSent con false
         this.buildForm();
       }
     });
@@ -38,13 +39,13 @@ export class SurveyComponent {
       this.formBuilder.control(null, [Validators.required])
     );
   }
-  sendPoll(pollId: string) {
+  sendPoll(pollId: string, index: number) {
     this.pollID = pollId;
     this.pollService.sendPoll(this.pollID);
     localStorage.setItem('PollID', this.pollID);
-    this.pollSent = true;
+    this.pollSent[index] = true;
     setTimeout(() => {
-      this.pollSent = false;
+      this.pollSent[index] = false;
     }, 3000);
   }
 }
