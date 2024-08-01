@@ -20,7 +20,7 @@ FROM nginx:alpine
 # Copy custom Nginx configuration
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 # Copy the static files generated to the Nginx directory
-COPY --from=build /usr/src/app/dist/student-front /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/student-front/browser /usr/share/nginx/html
 
 # Expose port 80 to be accessible from outside
 EXPOSE 80
