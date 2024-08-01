@@ -1,9 +1,0 @@
-main {
-  position: relative;
-  left: 85px;
-  align-items: center; /* Center children horizontally */
-  display: grid;
-  width: calc(100% - 85px);
-  height: 100vh;
-  transition: var(--tran-05);
-}

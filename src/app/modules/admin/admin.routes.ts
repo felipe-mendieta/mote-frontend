@@ -18,15 +18,15 @@ export const routes: Routes = [
   {
     path: 'panel',
     canActivate: [authDashboardGuard, dashboardroleGuard],
-    component: AppLayoutComponent,
+    loadComponent: () => AppLayoutComponent,
     children: [
-      {path: '', data: { breadcrumb: 'home' }, component: AdminHomeComponent},
+      {path: '', data: { breadcrumb: 'home' }, loadComponent: () => AdminHomeComponent},
       { path: 'comments', data: { breadcrumb: 'comentarios' }, loadChildren: () => import('./pages/comments/comments.app.module').then(m => m.CommentsAppModule) },
-      { path: 'roomInfo', data: { breadcrumb: 'sala' }, component: RoomInfoComponent},
-      { path: 'dashboard', data: { breadcrumb: 'dashboard' }, component: DashboardComponent},
-      { path: 'surveyResults', data: { breadcrumb: 'resultados encuesta' }, component: SurveyResultsComponent},
-      { path: 'survey', data: { breadcrumb: 'enviar encuesta' }, component: SurveyComponent},
-      { path: 'flashquestions', data: { breadcrumb: 'Flashquestions' }, component: FlashquestionsComponent},
+      { path: 'roomInfo', data: { breadcrumb: 'sala' }, loadComponent: () => RoomInfoComponent},
+      { path: 'dashboard', data: { breadcrumb: 'dashboard' }, loadComponent: () => DashboardComponent},
+      { path: 'surveyResults', data: { breadcrumb: 'resultados encuesta' }, loadComponent: () => SurveyResultsComponent},
+      { path: 'survey', data: { breadcrumb: 'enviar encuesta' }, loadComponent: () => SurveyComponent},
+      { path: 'flashquestions', data: { breadcrumb: 'Flashquestions' }, loadComponent: () => FlashquestionsComponent},
 
     ],
   },

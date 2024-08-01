@@ -18,7 +18,7 @@ const routes: Routes = [
       {
         canActivate: [redirectGuard],
         path: 'login',
-        component: LoginComponent,
+        loadComponent: () => LoginComponent,
       },
 
     ],

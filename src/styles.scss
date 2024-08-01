@@ -10,13 +10,13 @@ $gutter: 1rem; //for primeflex grid system
 @import "../node_modules/primeicons/primeicons.css";
 
 /* Quill Text Editor for p-editor */
-@import "../node_modules/quill/dist/quill.core.css";
-@import "../node_modules/quill/dist/quill.snow.css";
+//@import "../node_modules/quill/dist/quill.core.css";
+//@import "../node_modules/quill/dist/quill.snow.css";
 
 /* Demos */
-@import "assets/demo/styles/flags/flags.css";
-@import "assets/demo/styles/badges.scss";
-@import "assets/demo/styles/code.scss";
+//@import "assets/demo/styles/flags/flags.css";
+//@import "assets/demo/styles/badges.scss";
+//@import "assets/demo/styles/code.scss";
 
 :root {
   --info-text: #333333;
@@ -26,12 +26,11 @@ $gutter: 1rem; //for primeflex grid system
   --main-third_color: #19a7ce;
   --main-background: #fdf8f8;
   --main-accent_color: #f0f0f0;
-
   --titles-h1: 1.875rem;
   --titles-h2: 1.5rem;
   --titles-h3: 1.25rem;
-  --titles-quote: 1.1875rem;
-  --text-paragraph: 1rem;
+  --titles-quote: 1.2rem;
+  --text-paragraph: 1.1rem;
 
   /*======Transitions========*/
   --tran-02: all 0.2s ease;
@@ -43,6 +42,7 @@ $gutter: 1rem; //for primeflex grid system
 body {
   background-color: var(--main-background);
   min-height: 100vh;
+
 }
 
 .fixed-size {
@@ -67,7 +67,7 @@ body {
   border: 1px solid var(--info-text, #333);
   background: var(--main-background, #fdf8f8);
   color: var(--info-text, #333);
-  font-family: Inter;
+  font-family: Inter, serif;
   font-size: 1.1875rem;
   font-style: normal;
   font-weight: 400;

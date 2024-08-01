@@ -16,7 +16,7 @@ import { RouterLink } from '@angular/router';
     ],
 })
 export class HeaderComponent {
-  name: String = 'MOTE APP';
+  name: String = 'MoTe';
   showDropdown: boolean = false;
 
   constructor(private authservice: AuthService) {}

@@ -3,11 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 /*Componentes propios*/
 
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
-import { redirectGuard } from './guards/redirect.guard';
 import { authGuard } from './guards/auth.guard';
-import { authDashboardGuard } from './guards/auth-dashboard.guard';
 import { roleGuard } from './guards/role.guard';
-import { dashboardroleGuard } from './guards/dashboardrole.guard';
+
 
 const routes: Routes = [
   {
@@ -33,11 +31,6 @@ const routes: Routes = [
         (module) => module.StudentModule
       ),
   },
-  // {
-  //   path: 'dashboard',
-  //   //canActivate: [authDashboardGuard, dashboardroleGuard],
-  //   redirectTo: 'admin',
-  // },
   {
     path: '**',
     component: NotFoundComponent,

@@ -7,10 +7,12 @@
   justify-content: space-around;
   align-items: center;
 }
-
+.header ul {
+  margin: 0; /* Elimina los márgenes */
+  padding: 0; /* Elimina el relleno */
+}
 .header li {
   display: inline-block;
-  padding: 10px;
   position: relative;
 }
 
@@ -30,9 +32,9 @@
 .header__title {
   color: var(--main-background, #333);
   font-family: var(--font-family);
-  font-size: var(--titles-h2);
+  font-size: var(--titles-h1);
 }
 
 .isVisible {
-  transition: va(--tran-05);
+  transition: var(--tran-05);
 }
