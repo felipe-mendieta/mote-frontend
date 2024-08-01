@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { Subscription, filter, map, tap } from 'rxjs';
-import { DashboardActivity } from 'src/app/interfaces/activity,interface';
+import { DashboardActivity } from 'src/app/interfaces/activity.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { lineChartColors } from 'src/app/utils/configchartsettings';
 import { initChartconf } from 'src/app/utils/configchartsettings';

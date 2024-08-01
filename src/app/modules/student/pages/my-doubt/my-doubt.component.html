@@ -1,4 +1,11 @@
-<student-title-page [displayText]="'Dudas'"></student-title-page>
+<student-title-page [displayText]="'Flasquestion'"></student-title-page>
+<div class="question__title">
+  @if(flashquestion()){
+  <h3>{{flashquestion()}}</h3>
+  } @else {
+  <p>Flashquestion aún no ha sido enviada</p>
+  }
+</div>
 <main class="grid-container">
   <textarea
     class="text-area"
@@ -6,7 +13,7 @@
     #textAreaDoubts
   ></textarea>
   <student-button-text
-    (click)="submitQuestion(ACTIVITY.question)"
+    (click)="submitQuestion(ACTIVITY.flashquestion)"
     [textButton]="'Enviar duda al docente'"
   />
 </main>

@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Subscription, filter, map, tap } from 'rxjs';
-import { DashboardActivity } from 'src/app/interfaces/activity,interface';
+import { DashboardActivity } from 'src/app/interfaces/activity.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import Chart from 'chart.js/auto';
 import { lineChartColors } from 'src/app/utils/configchartsettings';

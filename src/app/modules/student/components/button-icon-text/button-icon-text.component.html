@@ -30,7 +30,7 @@
   </ng-container>
   <ng-container *ngIf="imageUrl === './../../../../assets/icons/poll-icon.svg'">
     <div
-      *ngIf="isEnabledPoll === false"
+      *ngIf="!isEnabledPoll"
       [class.confirmation-message]="!isEnabledPoll"
     >
       1

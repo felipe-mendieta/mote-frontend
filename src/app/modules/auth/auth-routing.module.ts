@@ -20,11 +20,7 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
-      {
-        canActivate: [redirectDashboardGuard],
-        path: 'login-dashboard',
-        component: LoginDashboardComponent,
-      },
+
     ],
   },
 ];

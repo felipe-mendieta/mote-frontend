@@ -50,4 +50,5 @@ export class SocketService {
   on<T>(event: string): Observable<T> {
     return this.socket.fromEvent<T>(event).pipe(map((data: T) => data as T));
   }
+
 }

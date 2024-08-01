@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Activity } from 'src/app/interfaces/activity,interface';
+import { Activity } from 'src/app/interfaces/activity.interface';
 import { JoinRoom } from 'src/app/interfaces/room.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';

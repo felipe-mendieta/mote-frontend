@@ -24,7 +24,7 @@ export class AppTopBarComponent implements OnInit {
     @ViewChild('searchinput') searchInput!: ElementRef;
 
     @ViewChild('menubutton') menuButton!: ElementRef;
-    
+
     searchActive: boolean = false;
     private _email: string = '';
     private _profileName: string= '';
@@ -39,9 +39,9 @@ export class AppTopBarComponent implements OnInit {
     ) { }
     ngOnInit(): void {
         var user = JSON.parse(sessionStorage.getItem('loggedInUser') || '{}');
-        this.profileName = user.name;
-        this.email = user.email;
-        this.profilePicture = user.picture;
+        this.profileName = user.name || '';
+        this.email = user.email || '';
+        this.profilePicture = user.picture || '';
     }
     get profilePicture(): string {
         return this._profilePicture;

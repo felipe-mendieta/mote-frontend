@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Activity } from 'src/app/interfaces/activity,interface';
+import { Activity } from 'src/app/interfaces/activity.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { RoomService } from 'src/app/services/room.service';
 import { SidebarService } from 'src/app/services/sidebar.service';

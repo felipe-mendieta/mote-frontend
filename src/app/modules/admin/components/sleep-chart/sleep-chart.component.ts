@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/co
 import { ChartModule } from 'primeng/chart';
 import { LayoutService } from '../layout/service/app.layout.service';
 import { Subscription, debounceTime, filter, map } from 'rxjs';
-import { DashboardActivity } from 'src/app/interfaces/activity,interface';
+import { DashboardActivity } from 'src/app/interfaces/activity.interface';
 import { ACTIVITY } from 'src/app/modules/student/enums/activity.enum';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { initChartconf } from 'src/app/utils/configchartsettings';

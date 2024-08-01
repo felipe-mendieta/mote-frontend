@@ -1,3 +1,16 @@
 .success-message-color {
     color: rgb(101, 214, 173);
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
+}

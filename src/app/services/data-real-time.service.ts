@@ -6,7 +6,7 @@ import {
   CreateActivityCommentDTO,
   DashboardActivity,
   RecordActivity,
-} from '../interfaces/activity,interface';
+} from '../interfaces/activity.interface';
 import { Emotion } from '../interfaces/emotion.interface';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -83,12 +83,6 @@ export class DataRealTimeService implements OnInit {
     this.socketService
       .on<any>('dashboardActivity')
       .pipe
-      /* tap((value) =>
-          console.log(
-            '(tap en data-real-time-service) Escuchando el evento dashboardActivity',
-            value
-          )
-        )*/
       ()
       .subscribe((activity: any) => {
         this.activitySubject.next(activity);

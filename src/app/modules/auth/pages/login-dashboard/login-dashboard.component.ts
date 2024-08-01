@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, NgZone, OnInit} from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 declare var google: any;
 //import environment from '../../../../../../environments/environment';
 @Component({
-    selector: 'app-login-dashboard',
-    templateUrl: './login-dashboard.component.html',
-    styleUrls: ['./login-dashboard.component.scss'],
-    standalone: true,
+  selector: 'app-login-dashboard',
+  templateUrl: './login-dashboard.component.html',
+  styleUrls: ['./login-dashboard.component.scss'],
+  standalone: true,
 })
 export class LoginDashboardComponent implements OnInit {
   constructor(
@@ -41,16 +41,8 @@ export class LoginDashboardComponent implements OnInit {
 
   handleLogin(response: any) {
     if (response) {
-      //decode the token
       const payLoad = this.decodeToken(response.credential);
-      //store in session
-      sessionStorage.setItem('loggedInUser', JSON.stringify(payLoad));
-      //navigate to home/browse
-
-      this.authService.login('admin',payLoad).subscribe((res) => {
-        //console.log(res);
-
-        //ng zone
+      this.authService.login('admin', payLoad).subscribe((res) => {
         this.ngZone.run(() => {
           this.authService.setAndStoreUserRole('teacher');
           this.router.navigate(['/dashboard']);

@@ -1,0 +1,22 @@
+<div class="card">
+  <h5>Flashquestions</h5>
+  <div class="">
+    <div class="field">
+      <input pInputText type="text" placeholder="Pregunta rápida" [(ngModel)]="questionAdmin" class="col-12"/>
+    </div>
+    <button pButton label="Enviar" (click)="saveQuestion()"  ></button>
+  </div>
+</div>
+<!--      create a cards answers like mentimeter with tailwind css for show the user answers-->
+<div class="grid mt-1">
+@for (answer of answers(); track answer){
+    <div class="col-12">
+      <div class="card">
+        <p>{{answer.text }}</p>
+      </div>
+    </div>
+}
+</div>
+
+
+

@@ -4,7 +4,7 @@ import {
   Activity,
   CreateActivityCommentDTO,
   RecordActivity,
-} from 'src/app/interfaces/activity,interface';
+} from 'src/app/interfaces/activity.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { NgFor } from '@angular/common';
 

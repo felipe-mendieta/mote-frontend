@@ -5,12 +5,13 @@ import { Poll } from 'src/app/interfaces/poll.interface';
 import { NgFor, NgIf } from '@angular/common';
 import { PollService } from 'src/app/services/poll.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {Ripple} from "primeng/ripple";
 
 
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [AvatarModule, ButtonModule, NgFor, NgIf, ReactiveFormsModule],
+  imports: [AvatarModule, ButtonModule, NgFor, NgIf, ReactiveFormsModule, Ripple],
   templateUrl: './survey.component.html',
   styleUrl: './survey.component.scss'
 })

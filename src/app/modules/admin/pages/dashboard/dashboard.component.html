@@ -1,17 +1,31 @@
-<div class="grid p-fluid">
-    <div class="col-12 lg:col-4 dashboard-container">
-        <app-excellent-class-chart></app-excellent-class-chart>
-    </div>
-    <div class="col-12 lg:col-4 dashboard-container">
-        <app-sleep-chart></app-sleep-chart>
-    </div>
-    <div class="col-12 lg:col-4 dashboard-container">
-        <app-emotions-chart></app-emotions-chart>
-    </div>
-        <div class="col-12 lg:col-4 dashboard-container">
-            <app-ido-not-get-it-chart></app-ido-not-get-it-chart>
+<div class="grid nested-grid">
+  <div class="col-8">
+    <div class="grid">
+      <div class="col-6">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <app-excellent-class-chart></app-excellent-class-chart>
         </div>
-        <div class="col-12 lg:col-4 dashboard-container">
-            <app-take-abreak-chart></app-take-abreak-chart>
+      </div>
+      <div class="col-6">
+        <div class="text-center p-3 border-round-sm  font-bold">
+          <app-sleep-chart></app-sleep-chart>
         </div>
+      </div>
+      <div class="col-6">
+        <div class="text-center p-3 border-round-sm font-bold">
+          <app-ido-not-get-it-chart></app-ido-not-get-it-chart>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="text-center p-3 border-round-sm  font-bold">
+          <app-take-abreak-chart></app-take-abreak-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="text-center p-3  h-full  font-bold">
+      <app-emotions-chart></app-emotions-chart>
+    </div>
+  </div>
 </div>

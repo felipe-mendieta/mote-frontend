@@ -7,7 +7,9 @@
   height: 3.8125rem;
   border: none;
   border-radius: 0.9375rem;
+  position: relative; /* Asegura que el contenedor padre tenga posición relativa */
 }
+
 button {
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
@@ -28,4 +30,35 @@ button:hover {
 .button-icon__image img {
   width: 100%; /* Asegura que la imagen llene el espacio dentro del botón */
   height: 100%;
+}
+
+.confirmation-message {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* Posiciona el mensaje de confirmación de forma absoluta */
+  right: 0.5rem; /* Ajustado para mantenerse en la esquina superior derecha */
+  top: 0.5rem; /* Ajustado para mantenerse en la esquina superior derecha */
+  padding: 0.5rem;
+  border-radius: 100%;
+  background-color: var(--info-notification, #d2070f);
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  z-index: 10; /* Asegura que el mensaje de confirmación se sobreponga */
+  color: white;
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.5rem);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 }

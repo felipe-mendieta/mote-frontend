@@ -1,3 +1,10 @@
-<button class="button-icon" [disabled]="isActived">
+<button class="button-icon"
+        [disabled]="isActived"
+        [style.background-color]="buttonColor">
   <img [src]="imageUrl" [alt]="altImg" class="button-icon__image">
+  <ng-container *ngIf="imageUrl === './../../../../assets/icons/question-icon.svg'">
+    <div *ngIf="!isEnabledPoll" class="confirmation-message">
+      1
+    </div>
+  </ng-container>
 </button>

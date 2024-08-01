@@ -77,7 +77,7 @@ import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { NgFor, NgClass, NgIf, SlicePipe } from '@angular/common';
 import { filter, tap } from 'rxjs';
-import { Activity, CreateActivityCommentDTO, RecordActivity } from 'src/app/interfaces/activity,interface';
+import { Activity, CreateActivityCommentDTO, RecordActivity } from 'src/app/interfaces/activity.interface';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { SocketService } from 'src/app/services/socket.service';
 

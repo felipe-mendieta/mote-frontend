@@ -6,7 +6,7 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
 import { CommentsComponent } from './comments-list/comments-list.component';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
-import { RecordActivity } from 'src/app/interfaces/activity,interface';
+import { RecordActivity } from 'src/app/interfaces/activity.interface';
 
 @Component({
     templateUrl: './comments.app.component.html',

@@ -33,14 +33,11 @@ const routes: Routes = [
         (module) => module.StudentModule
       ),
   },
-  {
-    path: 'dashboard',
-    //canActivate: [authDashboardGuard, dashboardroleGuard],
-    loadChildren: () =>
-      import('./modules/dashboard/dashboard-routing.module').then(
-        (m=> m.routes)
-      ),
-  },
+  // {
+  //   path: 'dashboard',
+  //   //canActivate: [authDashboardGuard, dashboardroleGuard],
+  //   redirectTo: 'admin',
+  // },
   {
     path: '**',
     component: NotFoundComponent,

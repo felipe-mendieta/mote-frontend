@@ -14,7 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
-import { RecordActivity } from 'src/app/interfaces/activity,interface';
+import { RecordActivity } from 'src/app/interfaces/activity.interface';
 
 @Component({
     selector: 'app-create-task',

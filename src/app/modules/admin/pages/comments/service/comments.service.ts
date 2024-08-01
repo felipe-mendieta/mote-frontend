@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { DialogConfig, Task } from 'src/app/demo/api/comment';
-import { RecordActivity } from 'src/app/interfaces/activity,interface';
+import { RecordActivity } from 'src/app/interfaces/activity.interface';
 
 @Injectable()
 export class CommentsService {

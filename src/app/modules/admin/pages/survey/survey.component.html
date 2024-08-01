@@ -1,30 +1,26 @@
-<div class="grid">
-    <div class="col-12 lg:col-6 xl:col-3">
-        <div class="flex-container" style="display: flex;">
-            <div class="poll col-12" *ngFor="let poll of pollList; index as i">
-                <form [formGroup]="myPolls" class="margin-inline" (ngSubmit)="sendPoll(poll._id,i)">
-                    <div class="card h-full">
-                        <h5>{{ poll.pollTitle }}</h5>
-                        <ul class="list-none p-0 m-0">
-                            <div class="poll__body__quesions" *ngFor="let questions of poll.questions; index as j">
-                                <li class="mb-4 flex align-items-center">
-                                    <p-avatar label="{{ j+1 }}" size="large" shape="circle"
-                                        styleClass="text-base font-bold"
-                                        [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
-                                    <div class="ml-3">
-                                        <span class="block">{{ questions.question }}</span>
-                                    </div>
-                                </li>
+<div class="grid-container">
+    <div class="grid-item" *ngFor="let poll of pollList; index as i">
+        <form [formGroup]="myPolls" class="mx-4" (ngSubmit)="sendPoll(poll._id,i)">
+            <div class="card h-full p-4">
+                <h5>{{ poll.pollTitle }}</h5>
+                <ul class="list-none p-0 m-0">
+                    <div class="poll__body__questions" *ngFor="let questions of poll.questions; index as j">
+                        <li class="mb-4 flex items-center">
+                            <p-avatar label="{{ j+1 }}" size="large" shape="circle"
+                                class="text-base font-bold"
+                                [style]="{'background-color':'rgba(101, 214, 173, 0.1)', 'color': '#27AB83', 'border': '1px solid #65D6AD'}"></p-avatar>
+                            <div class="ml-3">
+                                <span class="block">{{ questions.question }}</span>
                             </div>
-                        </ul>
-                        <div *ngIf="pollSent[i]" class="alert alert-success mt-3" role="alert">
-                            <p class="success-message-color">Encuesta enviada con éxito.</p>
-                        </div>
-                        <button type="submit" pButton pRipple class="w-full mt-3 " label="Enviar encuesta"
-                            icon="pi pi-arrow-right" iconPos="right"></button>
+                        </li>
                     </div>
-                </form>
+                </ul>
+                <div *ngIf="pollSent[i]" class="alert alert-success mt-3" role="alert">
+                    <p class="text-success">Encuesta enviada con éxito.</p>
+                </div>
+                <button type="submit" pButton pRipple class="w-full mt-3" label="Enviar encuesta"
+                    icon="pi pi-arrow-right" iconPos="right"></button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

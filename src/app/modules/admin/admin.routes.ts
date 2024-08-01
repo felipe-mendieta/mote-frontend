@@ -8,6 +8,7 @@ import { SurveyComponent } from "./pages/survey/survey.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { authDashboardGuard } from '../../guards/auth-dashboard.guard';
 import { dashboardroleGuard } from '../../guards/dashboardrole.guard';
+import {FlashquestionsComponent} from "./pages/flashquestions/flashquestions.component";
 export const routes: Routes = [
   {
     path: '',
@@ -25,10 +26,16 @@ export const routes: Routes = [
       { path: 'dashboard', data: { breadcrumb: 'dashboard' }, component: DashboardComponent},
       { path: 'surveyResults', data: { breadcrumb: 'resultados encuesta' }, component: SurveyResultsComponent},
       { path: 'survey', data: { breadcrumb: 'enviar encuesta' }, component: SurveyComponent},
+      { path: 'flashquestions', data: { breadcrumb: 'Flashquestions' }, component: FlashquestionsComponent},
+
     ],
   },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'panel'
   }
 ];

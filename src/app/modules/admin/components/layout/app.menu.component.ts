@@ -34,6 +34,13 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Sala', icon: 'pi pi-fw pi-wallet', routerLink: ['/admin/panel/roomInfo']
             },
+          {
+            label: 'Encuestas', icon: 'pi pi-fw pi-send', routerLink: ['/admin/panel/survey']
+          },
+          {
+            label: 'Flashquestion', icon: 'pi pi-fw pi-question', routerLink: ['/admin/panel/flashquestions']
+          },
+
         ];
     }
 }
