@@ -4,7 +4,10 @@
     <div class="field">
       <input pInputText type="text" placeholder="Pregunta rápida" [(ngModel)]="questionAdmin" class="col-12"/>
     </div>
-    <button pButton label="Enviar" (click)="saveQuestion()"  ></button>
+    <div>
+      <button pButton label="Enviar" (click)="saveQuestion()"  ></button>
+    </div>
+    <div *ngIf="isQuestionsend" class="text-green-500 mt-3">¡Pregunta enviada!</div>
   </div>
 </div>
 <!--      create a cards answers like mentimeter with tailwind css for show the user answers-->
