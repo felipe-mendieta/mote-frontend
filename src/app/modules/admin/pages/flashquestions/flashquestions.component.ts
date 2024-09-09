@@ -36,14 +36,14 @@ import {Poll} from "../../../../interfaces/poll.interface";
   styleUrl: './flashquestions.component.scss'
 })
 export class FlashquestionsComponent {
-  isQuestionsend: boolean = false;
+  isQuestionsend = signal(false);
   flashquestionsService = inject(FlashquestionsService);
   questionAdmin: string = '';
   answers = this.flashquestionsService.getAnswers();
 
   saveQuestion() {
     this.flashquestionsService.sendQuestion(this.questionAdmin);
-    this.isQuestionsend = true;
+    this.isQuestionsend.set(true);
     // You can add additional logic to save the question here
   }
 }
