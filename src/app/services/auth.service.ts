@@ -23,7 +23,6 @@ export class AuthService {
   ) { }
   //token = ''
   login(rol = '', data = {email:'',aud:'',name:'',picture:''}): Observable<ResponseLoginDashboard> {
-    // console.log('login service');
     const info = {
       rol: rol,
       name: data.name,
