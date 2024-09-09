@@ -1,5 +1,5 @@
 # Use a Node.js image to build the Angular project
-FROM node:alpine as build
+FROM node:alpine AS build
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
