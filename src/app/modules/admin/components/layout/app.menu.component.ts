@@ -30,13 +30,13 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Estadísticas', icon: 'pi pi-chart-line',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-chart-pie', routerLink: ['/admin/panel/dashboard'] },
+                    { label: 'Reacciones Estudiantes', icon: 'pi pi-chart-pie', routerLink: ['/admin/panel/dashboard'] },
                     { label: 'Resultado Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/panel/surveyResults'] }
                 ]
             },
 
           {
-            label: 'Encuestas', icon: 'pi pi-fw pi-send', routerLink: ['/admin/panel/survey']
+            label: 'Encuestas', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/admin/panel/survey']
           },
           {
             label: 'Flashquestion', icon: 'pi pi-fw pi-question', routerLink: ['/admin/panel/flashquestions']

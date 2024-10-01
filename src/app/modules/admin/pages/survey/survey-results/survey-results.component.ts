@@ -33,8 +33,8 @@ export class SurveyResultsComponent implements OnInit {
     {
       dimension: 'Conductual',
       color: '#FFA726',
-      low: '1 - Muy bajo compromiso conductual: El estudiante participa mínimamente en actividades y tareas.',
-      high: '5 - Muy alto compromiso conductual: El estudiante participa activamente y cumple con las tareas asignadas.',
+      low: '1 - Muy bajo compromiso conductual: El estudiante participa mínimamente.',
+      high: '5 - Muy alto compromiso conductual: El estudiante participa activamente.',
     },
   ];
 
