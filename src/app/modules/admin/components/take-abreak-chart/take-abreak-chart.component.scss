@@ -1,0 +1,30 @@
+.bar-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .card {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    .chart-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #333333;
+    }
+
+    .chart {
+      width: 100%;
+
+      canvas {
+        max-height: 400px;
+      }
+    }
+  }
+}

@@ -12,25 +12,27 @@ import { initChartconf } from 'src/app/utils/configchartsettings';
   standalone: true,
   imports: [ChartModule],
   templateUrl: './sleep-chart.component.html',
-  styleUrl: './sleep-chart.component.scss'
+  styleUrls: ['./sleep-chart.component.scss'],
 })
 export class SleepChartComponent implements OnInit, AfterViewInit {
   barData: any;
   barOptions: any;
   subscription: Subscription;
   currentPosition: number = 0;
-  interactionsPerInterval: number[] = Array(initChartconf.numberOfBeans).fill(
-    0
-  );
+  interactionsPerInterval: number[] = Array(initChartconf.numberOfBeans).fill(0);
   previousValues: number[] = [];
   historial: number[] = [];
   Interactions: number = 0;
   barChartXaxisLabels = initChartconf.barChartXaxisLabels;
 
-  constructor(private layoutService: LayoutService, private dataRealTimeService: DataRealTimeService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private layoutService: LayoutService,
+    private dataRealTimeService: DataRealTimeService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.subscription = this.layoutService.configUpdate$
       .pipe(debounceTime(25))
-      .subscribe((config) => {
+      .subscribe(() => {
         this.initCharts();
       });
   }
@@ -44,7 +46,6 @@ export class SleepChartComponent implements OnInit, AfterViewInit {
     this.dataRealTimeService
       .getActivity$()
       .pipe(
-        //tap((res) => console.log('tap en excellent chart logic', res)),
         filter<DashboardActivity>(
           (activity) => activity.activityType == ACTIVITY.sleep
         )
@@ -61,10 +62,9 @@ export class SleepChartComponent implements OnInit, AfterViewInit {
     this.historial = activity.historial;
 
     if (this.isVectorLengthReached()) {
-      /* End Updates*/
-      // console.log('end updates');
+      // Fin de las actualizaciones
     } else {
-      this.updateLineChartData(this.Interactions);
+      this.updateBarChartData(this.Interactions);
     }
   }
 
@@ -82,41 +82,83 @@ export class SleepChartComponent implements OnInit, AfterViewInit {
   }
 
   initCharts() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    const textColor = '#333333';
+    const gridLineColor = '#e9e9e9';
+
     this.barOptions = {
       plugins: {
         legend: {
-          labels: {
-            color: textColor
-          }
-        }
+          display: false,
+        },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: function (context: any) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== null) {
+                label += `${context.parsed.y} estudiantes`;
+              }
+              return label;
+            },
+          },
+        },
       },
       scales: {
         x: {
+          title: {
+            display: true,
+            text: 'Intervalos de Tiempo (cada 10 minutos)',
+            color: textColor,
+          },
           ticks: {
-            color: textColorSecondary,
+            color: textColor,
             font: {
-              weight: 500
-            }
+              weight: 500,
+            },
           },
           grid: {
-            display: false,
-            drawBorder: false
-          }
+            display: true, // Muestra las líneas guía en el eje X
+            color: gridLineColor,
+          },
         },
         y: {
+          title: {
+            display: true,
+            text: 'Número de Interacciones',
+            color: textColor,
+          },
           ticks: {
-            color: textColorSecondary
+            color: textColor,
+            stepSize: 1, // Incrementos de 1 en el eje Y
+            beginAtZero: true, // Inicia el eje Y desde cero
+            precision: 0, // Evita mostrar decimales
+            callback: function (value:any) {
+              return Number(value).toFixed(0); // Formatea las etiquetas para mostrar enteros
+            },
           },
           grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
+            display: true, // Muestra las líneas guía en el eje Y
+            color: gridLineColor,
+          },
         },
-      }
+      },
+    };
+
+    // Inicializa los datos del gráfico
+    this.barData = {
+      labels: this.barChartXaxisLabels,
+      datasets: [
+        {
+          label: 'Interacciones',
+          data: [...this.interactionsPerInterval],
+          backgroundColor: '#FFCE56', // Color distintivo para "Tengo Sueño"
+          borderColor: '#FFCE56',
+          borderWidth: 1,
+        },
+      ],
     };
   }
 
@@ -124,87 +166,63 @@ export class SleepChartComponent implements OnInit, AfterViewInit {
     this.dataRealTimeService
       .getDashboardActivities()
       .pipe(
-        map<DashboardActivity[], DashboardActivity[]>(
-          (activities: DashboardActivity[]) => {
-            return activities.filter((activity: DashboardActivity) => {
-              return activity.activityType === ACTIVITY.sleep;
-            });
-          }
-        )
+        map<DashboardActivity[], DashboardActivity[]>((activities: DashboardActivity[]) => {
+          return activities.filter((activity: DashboardActivity) => {
+            return activity.activityType === ACTIVITY.sleep;
+          });
+        })
       )
       .subscribe((data: DashboardActivity[]) => {
         if (data.length > 0) {
           this.previousValues = data[0].historial;
           this.currentPosition = this.previousValues.length;
-          /*console.log(
-            'Historial of "excellent class" activity:',
-            this.previousValues
-          );*/
-          //console.log('currrent position', this.currentPosition);
           if (this.isPositionWithinDataRange()) {
             this.interactionsPerInterval.splice(
               0,
               this.previousValues.length,
               ...this.previousValues
             );
-
-            // console.log(
-            //   'Se ejecuta  "isPositionWithinDataRange"',
-            //   this.interactionsPerInterval
-            // );
             if (this.currentPosition == this.interactionsPerInterval.length) {
-              /* End Updates*/
-              //console.log('end updates');
+              // Fin de las actualizaciones
             } else {
-              // console.log('valor de count', data[0].count);
-              this.updateLineChartData(data[0].count);
+              this.updateBarChartData(data[0].count);
             }
-            //this.lineChart.update();
           }
-        } else {
-          //console.log('No "excellent class" activity found.');
         }
       });
   }
+
   isPositionWithinDataRange(): boolean {
-    /*console.log(
-      'el tamano del vector de la grafica excellent-class',
-      this.lineChart.data.datasets[0].data.length
-    );*/
-    return this.currentPosition <= 12;
+    return this.currentPosition <= this.interactionsPerInterval.length;
   }
 
-  updateLineChartData(interactions: number): void {
+  updateBarChartData(interactions: number): void {
     if (this.isPositionWithinDataRange()) {
       this.updateDataInterval(interactions);
-      // this.lineChart.update();
     } else {
       this.endRealTimeUpdates();
     }
   }
+
   updateDataInterval(interactions: number) {
     this.interactionsPerInterval[this.currentPosition] = interactions;
     this.barData = {
       labels: this.barChartXaxisLabels,
       datasets: [
         {
-          label: 'Sensaciones',
+          label: 'Interacciones',
           data: [...this.interactionsPerInterval],
-          fill: true,
-          borderColor: '#4bc0c0',
-          backgroundColor: '#4bc0c0',
-          pointBackgroundColor: '#4bc0c0',
-          pointBorderColor: '#4bc0c0',
-          pointHoverBackgroundColor: '#4bc0c0',
-          pointHoverBorderColor: '#4bc0c0'
-        }
-      ]
+          backgroundColor: '#FFCE56',
+          borderColor: '#FFCE56',
+          borderWidth: 1,
+        },
+      ],
     };
   }
+
   endRealTimeUpdates() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-
 }

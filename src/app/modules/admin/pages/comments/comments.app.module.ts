@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommentsAppRoutingModule } from './comments.app-routing.module';
 import { CommentsAppComponent } from './comments.app.component';
-import { CreateCommentComponent } from './create-comment/create-comment.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor'
@@ -36,7 +35,7 @@ import { RippleModule } from 'primeng/ripple';
         MenuModule,
         DialogModule,
         RippleModule,
-        CommentsAppComponent, CreateCommentComponent, CommentsAppComponent
+        CommentsAppComponent, CommentsAppComponent
     ],
     providers: [CommentsService]
 })

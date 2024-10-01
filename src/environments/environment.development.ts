@@ -1,3 +1,4 @@
+let backenddomain: string = 'http://localhost:4200';
 export const environment = {
   production: false,
   mainUrl: 'localhost:4200',

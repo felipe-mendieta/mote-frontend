@@ -1,6 +1,11 @@
-<div class="barChart-container">
-    <div class="card">
-        <h5>Excelente clase</h5>
-        <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
-    </div>
-</div>  
+<div class="bar-chart-container">
+  <div class="card">
+    <h5 class="chart-title">Interacciones de "Excelente Clase" por Intervalo de 10 Minutos</h5>
+    <p-chart
+      type="bar"
+      [data]="barData"
+      [options]="barOptions"
+      styleClass="chart"
+    ></p-chart>
+  </div>
+</div>
