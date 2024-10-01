@@ -1,45 +1,67 @@
-main {
-  display: grid;
-  align-items: center;
-  position: relative;
-  left: 80px;
-  width: calc(100% - 80px);
-  height: 100vh;
-  transition: var(--tran-05);
-}
-
-main p {
-  text-align: end;
-}
-
-.main-content.close {
-  filter: blur(5px); /* Apply blur effect */
-  transition: filter 0.3s ease; /* Add transition for a smooth effect */
-}
-
 .dashboard-container {
-  --min-column-size: 22rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(400px, 1fr)
-  );
-  place-content: center;
-  grid-auto-rows: 20rem; /* Adjust as needed */
-}
+  padding: 20px;
 
-.dashboard-barChart {
-  padding: 16px; /* Adjusted padding */
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3); /* Consistent shadow */
-  border-radius: 16px; /* Consistent border-radius */
-  background-color: #fff; /* Chart background */
-}
+  .chart-item-full {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 
-@media screen and (min-width: 670px) {
-  .main-content.close {
-    position: relative;
-    left: 250px;
-    width: calc(100% - 250px);
+  .charts-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .charts-tabs-container {
+      flex: 1;
+      min-width: 300px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+
+      .tabs-nav {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+        border-bottom: 1px solid #e9e9e9;
+
+        li {
+          padding: 10px 20px;
+          cursor: pointer;
+          color: #555;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          margin-right: 5px;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+          &.active {
+            background-color: #ffffff;
+            color: #333;
+            font-weight: bold;
+            border: 1px solid #e9e9e9;
+            border-bottom: none;
+          }
+        }
+      }
+
+      .tabs-content {
+        background-color: #ffffff;
+        border: 1px solid #e9e9e9;
+        border-radius: 0 4px 4px 4px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        /* Opcional: Ajusta la altura mínima para evitar cambios bruscos al cambiar de pestaña */
+        min-height: 400px;
+      }
+    }
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { Task } from 'src/app/demo/api/comment';
 import { CommentsService } from './service/comments.service';
 import { Subscription } from 'rxjs';
-import { CreateCommentComponent } from './create-comment/create-comment.component';
 import { CommentsComponent } from './comments-list/comments-list.component';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +10,7 @@ import { RecordActivity } from 'src/app/interfaces/activity.interface';
 @Component({
     templateUrl: './comments.app.component.html',
     standalone: true,
-    imports: [ButtonModule, RippleModule, CommentsComponent, CreateCommentComponent]
+    imports: [ButtonModule, RippleModule, CommentsComponent]
 })
 export class CommentsAppComponent implements OnDestroy {
 

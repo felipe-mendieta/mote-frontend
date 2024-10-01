@@ -6,14 +6,18 @@
             <div class="flex align-items-center flex-1">
                 <p-checkbox [binary]="true" (onChange)="onCheckboxChange($event, task)" [(ngModel)]="task.done"
                     [inputId]="task._id"></p-checkbox>
-                <label for="task.id" style="word-break: break-word;" class="font-medium ml-2"
+                <label style="word-break: break-word;" class="font-medium ml-2"
                     [ngClass]="{'line-through': task.done}">{{task.text}}</label>
             </div>
             <div class="flex flex-1 gap-3 flex-column sm:flex-row sm:justify-content-between">
-                <div class="flex align-items-center">
-                    <span class="flex align-items-center font-semibold white-space-nowrap" *ngIf="task.date"><i
-                            class="pi pi-clock mr-2"></i>{{parseDate(task.date)}}</span>
-                </div>
+              <div class="flex align-items-center">
+          <span
+            class="flex align-items-center font-semibold white-space-nowrap"
+            *ngIf="task.date"
+          >
+            <i class="pi pi-clock mr-2"></i>{{ parseDate(task.date) }}
+          </span>
+              </div>
                 <!-- <div class="flex align-items-center sm:justify-content-end">
                     <p-avatarGroup styleClass="mr-3">
                         <p-avatar *ngFor="let member of task.members | slice:0:4" image="assets/demo/images/avatar/{{member.image}}" size="large" shape="circle"></p-avatar>

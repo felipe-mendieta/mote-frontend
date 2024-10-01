@@ -1,8 +1,19 @@
-<div class="grid p-fluid flex-container">
-    <div class="col-12 lg:col-8">
-        <div class="card">
-            <h5>Encuesta</h5>
-            <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+<div class="survey-results-container">
+  <div class="card">
+    <h5 class="chart-title">Resultados de la Encuesta de Compromiso Estudiantil</h5>
+    <p-chart type="bar" [data]="barData" [options]="barOptions" styleClass="chart"></p-chart>
+
+    <!-- Sección de Explicaciones -->
+    <div class="engagement-explanations">
+      <div *ngFor="let item of engagementExplanations" class="engagement-item">
+        <div class="dimension-title" [style.color]="item.color">
+          {{ item.dimension }}
         </div>
+        <div class="explanation">
+          <p><strong>Puntaje 1:</strong> {{ item.low }}</p>
+          <p><strong>Puntaje 5:</strong> {{ item.high }}</p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

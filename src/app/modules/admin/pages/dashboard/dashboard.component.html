@@ -1,31 +1,49 @@
-<div class="grid nested-grid">
-  <div class="col-8">
-    <div class="grid">
-      <div class="col-6">
-        <div class="text-center p-3 border-round-sm font-bold">
+<div class="dashboard-container">
+  <!-- Gráfico de Emociones Ajustado -->
+  <div class="chart-item-full">
+    <app-emotions-chart></app-emotions-chart>
+  </div>
+
+  <!-- Contenedores de Gráficos en Pestañas -->
+  <div class="charts-row">
+    <!-- Gráficos de Barras en Pestañas - Contenedor 1 -->
+    <div class="charts-tabs-container">
+      <ul class="tabs-nav">
+        <li [class.active]="activeTab1 === 'excellent'" (click)="selectTab1('excellent')">
+          Excelente Clase
+        </li>
+        <li [class.active]="activeTab1 === 'notUnderstand'" (click)="selectTab1('notUnderstand')">
+          No Entiendo
+        </li>
+      </ul>
+      <div class="tabs-content">
+        <div *ngIf="activeTab1 === 'excellent'">
           <app-excellent-class-chart></app-excellent-class-chart>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="text-center p-3 border-round-sm  font-bold">
-          <app-sleep-chart></app-sleep-chart>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="text-center p-3 border-round-sm font-bold">
+        <div *ngIf="activeTab1 === 'notUnderstand'">
           <app-ido-not-get-it-chart></app-ido-not-get-it-chart>
         </div>
       </div>
-      <div class="col-6">
-        <div class="text-center p-3 border-round-sm  font-bold">
+    </div>
+
+    <!-- Gráficos de Barras en Pestañas - Contenedor 2 -->
+    <div class="charts-tabs-container">
+      <ul class="tabs-nav">
+        <li [class.active]="activeTab2 === 'sleepy'" (click)="selectTab2('sleepy')">
+          Tengo Sueño
+        </li>
+        <li [class.active]="activeTab2 === 'break'" (click)="selectTab2('break')">
+          Tomar un Descanso
+        </li>
+      </ul>
+      <div class="tabs-content">
+        <div *ngIf="activeTab2 === 'sleepy'">
+          <app-sleep-chart></app-sleep-chart>
+        </div>
+        <div *ngIf="activeTab2 === 'break'">
           <app-take-abreak-chart></app-take-abreak-chart>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="text-center p-3  h-full  font-bold">
-      <app-emotions-chart></app-emotions-chart>
     </div>
   </div>
 </div>

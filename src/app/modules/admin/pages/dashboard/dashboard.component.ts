@@ -7,117 +7,24 @@ import { ExcellentClassChartComponent } from "../../components/excellent-class-c
 import { SleepChartComponent } from "../../components/sleep-chart/sleep-chart.component";
 import { IdoNotGetItChartComponent } from "../../components/ido-not-get-it-chart/ido-not-get-it-chart.component";
 import { TakeAbreakChartComponent } from "../../components/take-abreak-chart/take-abreak-chart.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [ChartModule, EmotionsChartComponent, ExcellentClassChartComponent, SleepChartComponent, IdoNotGetItChartComponent, TakeAbreakChartComponent]
+  imports: [ChartModule, EmotionsChartComponent, ExcellentClassChartComponent, SleepChartComponent, IdoNotGetItChartComponent, TakeAbreakChartComponent, NgIf]
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent  {
+  activeTab1: string = 'excellent';
+  activeTab2: string = 'sleepy';
 
-  lineData: any;
-
-  barData: any;
-
-  polarData: any;
-
-  lineOptions: any;
-
-  barOptions: any;
-
-  polarOptions: any;
-
-  subscription: Subscription;
-
-  constructor(private layoutService: LayoutService) {
-    this.subscription = this.layoutService.configUpdate$
-      .pipe(debounceTime(25))
-      .subscribe((config) => {
-        this.initCharts();
-      });
+  selectTab1(tabName: string) {
+    this.activeTab1 = tabName;
   }
 
-  ngOnInit() {
-    this.initCharts();
+  selectTab2(tabName: string) {
+    this.activeTab2 = tabName;
   }
-
-
-  initCharts() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.barOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary,
-            font: {
-              weight: 500
-            }
-          },
-          grid: {
-            display: false,
-            drawBorder: false
-          }
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-      }
-    };
-
-    this.lineOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-      }
-    };
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
-
 }

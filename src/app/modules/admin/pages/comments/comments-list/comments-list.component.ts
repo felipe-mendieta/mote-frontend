@@ -64,7 +64,7 @@
 //     this.taskService.markAsCompleted(task);
 // }
 // }
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menu, MenuModule } from 'primeng/menu';
 import { Task } from 'src/app/demo/api/comment';
@@ -89,58 +89,67 @@ import { SocketService } from 'src/app/services/socket.service';
     imports: [NgFor, CheckboxModule, FormsModule, NgClass, NgIf, AvatarGroupModule, AvatarModule, ButtonModule, RippleModule, MenuModule, SlicePipe]
 })
 export class CommentsComponent implements OnInit {
-    @Input() comments!: RecordActivity[];
-    // @Input() title!: string;
-    comment: string = '';
-    constructor(private dataRealTimeService: DataRealTimeService, private taskService: CommentsService,
-        private socketService: SocketService) { }
-    allComments: RecordActivity[] = [];
-    ngOnInit() {
-        this.dataRealTimeService
-            .getActivityComment$()
-            .pipe(
-                //tap((res) => console.log('estoy comment card')),
-                filter((activity: RecordActivity) => activity.activityType == 'comment')
-            )
-            .subscribe((activity) => {
-                console.log(activity.text);
-                this.fetchRealTimeData(activity);
-            });
+  @Input() comments!: RecordActivity[];
+  allComments: RecordActivity[] = [];
 
-        this.loadPreviousValues();
-    }
+  constructor(
+    private dataRealTimeService: DataRealTimeService,
+    private taskService: CommentsService,
+    private socketService: SocketService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-    fetchRealTimeData(activity: RecordActivity) {
-        //console.log('hola soy commn card fetch', activity);
-        this.allComments.push(activity);
-    }
+  ngOnInit() {
+    this.dataRealTimeService
+      .getActivityComment$()
+      .pipe(filter((activity: RecordActivity) => activity.activityType == 'comment'))
+      .subscribe((activity) => {
+        this.fetchRealTimeData(activity);
+      });
 
-    loadPreviousValues() {
-        this.dataRealTimeService
-            .getCommentsAndDoubts()
-            .pipe(
-        /*tap((res) => console.log('tap in comment card comppnent', res))*/)
-            .subscribe((data: RecordActivity[]) => {
-                if (data != null) {
-                    this.loadCcomments(data);
-                } else {
-                    //console.log('No "load previous values" activity found.');
-                }
-            });
+    this.loadPreviousValues();
+  }
+
+  fetchRealTimeData(activity: RecordActivity) {
+    if (!activity.date) {
+      activity.date = new Date();
+    } else {
+      activity.date = new Date(activity.date);
     }
 
-    loadCcomments(previousData: RecordActivity[]) {
-        this.allComments = previousData;
-    }
-    onCheckboxChange(event: any, task: RecordActivity) {
-        event.originalEvent.stopPropagation();
-        task.done = event.checked;
-        console.log(task._id, task.done);
-        this.socketService.emit('markAsDone', { id: task._id, done: task.done });
-        this.taskService.markAsCompleted(task);
-    }
-    parseDate(date: Date) {
-        let d = new Date(date);
-        return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
+    this.allComments.push(activity);
+    this.cdr.detectChanges();
+  }
+
+  loadPreviousValues() {
+    this.dataRealTimeService.getCommentsAndDoubts().subscribe((data: RecordActivity[]) => {
+      if (data != null) {
+        this.loadCcomments(data);
+      }
+    });
+  }
+
+  loadCcomments(previousData: RecordActivity[]) {
+    this.allComments = previousData.map((comment) => {
+      if (comment.date) {
+        comment.date = new Date(comment.date);
+      } else {
+        comment.date = new Date();
+      }
+      return comment;
+    });
+    this.cdr.detectChanges();
+  }
+
+  onCheckboxChange(event: any, task: RecordActivity) {
+    event.originalEvent.stopPropagation();
+    task.done = event.checked;
+    this.socketService.emit('markAsDone', { id: task._id, done: task.done });
+    this.taskService.markAsCompleted(task);
+  }
+
+  parseDate(date: Date | string) {
+    let d = new Date(date);
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
 }

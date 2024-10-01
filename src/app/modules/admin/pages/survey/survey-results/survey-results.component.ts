@@ -1,308 +1,137 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, debounceTime } from 'rxjs';
-import { LayoutService } from 'src/app/modules/admin/components/layout/service/app.layout.service';
+import { Subscription } from 'rxjs';
 import { ChartModule } from 'primeng/chart';
 import { DataRealTimeService } from 'src/app/services/data-real-time.service';
 import { PollEngagementResponse } from 'src/app/interfaces/pollResponses.interface';
+import {NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-survey',
+  selector: 'app-survey-results',
   templateUrl: './survey-results.component.html',
   styleUrls: ['./survey-results.component.scss'],
   standalone: true,
-  imports: [ChartModule]
+  imports: [ChartModule, NgForOf],
 })
-export class SurveyResultsComponent implements OnInit, OnDestroy {
-
-  lineData: any;
-
+export class SurveyResultsComponent implements OnInit {
   barData: any;
-
-  pieData: any;
-
-  polarData: any;
-
-  radarData: any;
-
-  lineOptions: any;
-
   barOptions: any;
 
-  pieOptions: any;
+  // Agrego las explicaciones de cada dimensión y puntaje
+  engagementExplanations = [
+    {
+      dimension: 'Cognitivo',
+      color: '#42A5F5',
+      low: '1 - Muy bajo compromiso cognitivo: El estudiante muestra poco interés en comprender el material.',
+      high: '5 - Muy alto compromiso cognitivo: El estudiante está altamente involucrado en el aprendizaje y comprensión profunda del material.',
+    },
+    {
+      dimension: 'Afectivo',
+      color: '#66BB6A',
+      low: '1 - Muy bajo compromiso afectivo: El estudiante tiene poca conexión emocional con el curso.',
+      high: '5 - Muy alto compromiso afectivo: El estudiante se siente muy conectado y entusiasmado con el curso.',
+    },
+    {
+      dimension: 'Conductual',
+      color: '#FFA726',
+      low: '1 - Muy bajo compromiso conductual: El estudiante participa mínimamente.',
+      high: '5 - Muy alto compromiso conductual: El estudiante participa activamente.',
+    },
+  ];
 
-  polarOptions: any;
-
-  radarOptions: any;
-
-  subscription: Subscription;
-
-  constructor(private layoutService: LayoutService, private dataRealTimeService: DataRealTimeService) {
-    this.subscription = this.layoutService.configUpdate$
-      .pipe(debounceTime(25))
-      .subscribe((config) => {
-        this.initCharts();
-      });
-  }
+  constructor(private dataRealTimeService: DataRealTimeService) {}
 
   ngOnInit() {
-    this.initCharts();
-    this.loadPreviousValues();
+    this.initChartOptions();
+    this.loadSurveyData();
   }
 
-  loadPreviousValues() {
-    this.dataRealTimeService
-      .getDashboardPollEngagementResponse()
-      .pipe(/*tap((res) => console.log('tap in emotions chart logic get', res))*/)
-      .subscribe((data: PollEngagementResponse) => {
-        if (data != null) {
-          this.updateChart(data);
-        } else {
-          //console.log('No "emotions" activity found.');
-        }
-      });
+  loadSurveyData() {
+    this.dataRealTimeService.getDashboardPollEngagementResponse().subscribe((data: PollEngagementResponse) => {
+      if (data) {
+        this.updateChartData(data);
+      }
+    });
   }
 
-  updateChart(data: PollEngagementResponse) {
-    const documentStyle = getComputedStyle(document.documentElement);
+  updateChartData(data: PollEngagementResponse) {
     this.barData = {
       labels: ['Cognitivo', 'Afectivo', 'Conductual'],
       datasets: [
         {
-          backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-          // borderColor: documentStyle.getPropertyValue('--primary-500'),
-          data: [data.cognitive, data.emotional, data.behavioral]
+          label: 'Puntaje Promedio',
+          backgroundColor: this.engagementExplanations.map((item) => item.color),
+          data: [data.cognitive, data.emotional, data.behavioral],
         },
-      ]
+      ],
     };
-    console.log('emotions data', data);
   }
 
-  initCharts() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.barData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'My First dataset',
-          backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-          borderColor: documentStyle.getPropertyValue('--primary-500'),
-          data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: 'My Second dataset',
-          backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-          borderColor: documentStyle.getPropertyValue('--primary-200'),
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
-      ]
-    };
+  initChartOptions() {
+    const textColor = '#333';
+    const gridLineColor = '#e0e0e0';
 
     this.barOptions = {
       plugins: {
         legend: {
-          display: false
-        }
+          display: false,
+        },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: (context: any) => {
+              let label = `${context.label}: `;
+              label += context.parsed.y.toFixed(1);
+              return label;
+            },
+          },
+        },
       },
       scales: {
         x: {
-          ticks: {
-            color: textColorSecondary,
+          title: {
+            display: true,
+            text: 'Dimensiones de Compromiso',
+            color: textColor,
             font: {
-              weight: 500
-            }
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          ticks: {
+            color: textColor,
+            font: {
+              size: 14,
+            },
           },
           grid: {
             display: false,
-            drawBorder: false
-          }
+          },
         },
         y: {
+          title: {
+            display: true,
+            text: 'Puntaje Promedio (1-5)',
+            color: textColor,
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
           ticks: {
-            color: textColorSecondary
+            color: textColor,
+            stepSize: 1,
+            beginAtZero: true,
+            max: 5,
+            callback: function (value: any) {
+              return Number(value).toFixed(0);
+            },
           },
           grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
+            color: gridLineColor,
+          },
         },
-      }
-    };
-
-    this.pieData = {
-      labels: ['A', 'B', 'C'],
-      datasets: [
-        {
-          data: [540, 325, 702],
-          backgroundColor: [
-            documentStyle.getPropertyValue('--indigo-500'),
-            documentStyle.getPropertyValue('--purple-500'),
-            documentStyle.getPropertyValue('--teal-500')
-          ],
-          hoverBackgroundColor: [
-            documentStyle.getPropertyValue('--indigo-400'),
-            documentStyle.getPropertyValue('--purple-400'),
-            documentStyle.getPropertyValue('--teal-400')
-          ]
-        }]
-    };
-
-    this.pieOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            usePointStyle: true,
-            color: textColor
-          }
-        }
-      }
-    };
-
-    this.lineData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-          borderColor: documentStyle.getPropertyValue('--primary-500'),
-          tension: .4
-        },
-        {
-          label: 'Second Dataset',
-          data: [28, 48, 40, 19, 86, 27, 90],
-          fill: false,
-          backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-          borderColor: documentStyle.getPropertyValue('--primary-200'),
-          tension: .4
-        }
-      ]
-    };
-
-    this.lineOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
       },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-      }
     };
-
-    this.polarData = {
-      datasets: [{
-        data: [
-          11,
-          16,
-          7,
-          3
-        ],
-        backgroundColor: [
-          documentStyle.getPropertyValue('--indigo-500'),
-          documentStyle.getPropertyValue('--purple-500'),
-          documentStyle.getPropertyValue('--teal-500'),
-          documentStyle.getPropertyValue('--orange-500')
-        ],
-        label: 'My dataset'
-      }],
-      labels: [
-        'Indigo',
-        'Purple',
-        'Teal',
-        'Orange'
-      ]
-    };
-
-    this.polarOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        r: {
-          grid: {
-            color: surfaceBorder
-          }
-        }
-      }
-    };
-
-    this.radarData = {
-      labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-      datasets: [
-        {
-          label: 'My First dataset',
-          borderColor: documentStyle.getPropertyValue('--indigo-400'),
-          pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
-          pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-          pointHoverBackgroundColor: textColor,
-          pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-          data: [65, 59, 90, 81, 56, 55, 40]
-        },
-        {
-          label: 'My Second dataset',
-          borderColor: documentStyle.getPropertyValue('--purple-400'),
-          pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
-          pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
-          pointHoverBackgroundColor: textColor,
-          pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
-          data: [28, 48, 40, 19, 96, 27, 100]
-        }
-      ]
-    };
-
-    this.radarOptions = {
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
-      },
-      scales: {
-        r: {
-          pointLabels: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder
-          }
-        }
-      }
-    };
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
 }

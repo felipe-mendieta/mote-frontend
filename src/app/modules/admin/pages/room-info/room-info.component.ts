@@ -118,7 +118,7 @@ export class RoomInfoComponent {
   }
 
   private createUrlCode() {
-    return `${environment.mainUrl}/auth/login?room=${this.newCode}`;;
+    return `https://${environment.mainUrl}/auth/login?room=${this.newCode}`;
   }
 }
 

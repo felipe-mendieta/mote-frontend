@@ -21,21 +21,22 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home', icon: 'pi pi-home', routerLink: ['/admin/panel']
             },
+          {
+            label: 'Sala', icon: 'pi pi-fw pi-wallet', routerLink: ['/admin/panel/roomInfo']
+          },
             {
                 label: 'Comentarios', icon: 'pi pi-fw pi-comments',routerLink: ['/admin/panel/comments']
             },
             {
-                label: 'Estadísticas', icon: 'pi pi-th-large',
+                label: 'Estadísticas', icon: 'pi pi-chart-line',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-chart-pie', routerLink: ['/admin/panel/dashboard'] },
-                    { label: 'Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/panel/surveyResults'] }
+                    { label: 'Reacciones Estudiantes', icon: 'pi pi-chart-pie', routerLink: ['/admin/panel/dashboard'] },
+                    { label: 'Resultado Encuestas', icon: 'pi pi-chart-bar', routerLink: ['/admin/panel/surveyResults'] }
                 ]
             },
-            {
-                label: 'Sala', icon: 'pi pi-fw pi-wallet', routerLink: ['/admin/panel/roomInfo']
-            },
+
           {
-            label: 'Encuestas', icon: 'pi pi-fw pi-send', routerLink: ['/admin/panel/survey']
+            label: 'Encuestas', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/admin/panel/survey']
           },
           {
             label: 'Flashquestion', icon: 'pi pi-fw pi-question', routerLink: ['/admin/panel/flashquestions']
